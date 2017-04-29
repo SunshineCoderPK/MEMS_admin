@@ -1,10 +1,11 @@
-ï»¿*{margin:0;padding:0}
+*{margin:0;padding:0}
 body{
-	font-family:'å¾®è½¯é›…é»‘','é»‘ä½“',serif,'å®‹ä½“';color:#4d6287;font-size:12px;
-	background:#191c2c;overflow:hidden}
-dd,div,dt,li,span{font-family:'å¾®è½¯é›…é»‘'}
+	font-family:'Î¢ÈíÑÅºÚ','ºÚÌå',serif,'ËÎÌå';color:#4d6287;font-size:12px;
+	overflow:hidden;
+	}
+dd,div,dt,li,span{font-family:'Î¢ÈíÑÅºÚ'}
 li{list-style-type:none}
-a,a:active{text-decoration:none;font-family:'å¾®è½¯é›…é»‘';outline:0}
+a,a:active{text-decoration:none;font-family:'Î¢ÈíÑÅºÚ';outline:0}
 img{border:none}
 * html,* html body{
 	background-image:url(style/images/about:blank);

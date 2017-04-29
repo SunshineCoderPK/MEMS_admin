@@ -47,4 +47,21 @@ public class UserAction extends BaseAction<Userinfo> {
 			return "login";
 		}
 	}
+	
+	
+	/**
+	 * 用户退出
+	 */
+	public String logout(){
+		//销毁session
+		ServletActionContext.getRequest().getSession().invalidate();
+		return "login";
+	}
+	
+	/**
+	 * 用户主页
+	 */
+	public String home() {
+		return "home";
+	}
 }
