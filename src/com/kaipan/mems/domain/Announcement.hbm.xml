@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.kaipan.mems.domain.Announcement" table="announcement" catalog="mems">
+        <id name="annId" type="string">
+            <column name="AnnId" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="admininfo" class="com.kaipan.mems.domain.Admininfo" fetch="select">
+            <column name="PublisherId" length="10" />
+        </many-to-one>
+        <property name="annTitle" type="string">
+            <column name="AnnTitle" length="50" />
+        </property>
+        <property name="annContent" type="string">
+            <column name="AnnContent" length="65535" />
+        </property>
+        <property name="publishTime" type="timestamp">
+            <column name="PublishTime" length="0" />
+        </property>
+         <property name="isDelete" type="java.lang.Boolean">
+            <column name="IsDelete"></column>
+        </property>
+    </class>
+</hibernate-mapping>

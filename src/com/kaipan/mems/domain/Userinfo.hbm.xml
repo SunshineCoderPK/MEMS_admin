@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.kaipan.mems.domain.Userinfo" table="userinfo" catalog="mems">
+        <id name="stuOrEmpId" type="string">
+            <column name="StuOrEmpId" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="Name" length="50" not-null="true" />
+        </property>
+        <property name="sex" type="java.lang.Boolean">
+            <column name="Sex" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="Age" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" length="50" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="50" />
+        </property>
+        <property name="idcard" type="string">
+            <column name="IDCard" length="18" not-null="true" />
+        </property>
+        <property name="phoneNo" type="string">
+            <column name="PhoneNo" length="11" />
+        </property>
+        <property name="roleId" type="int">
+            <column name="RoleId" not-null="true" />
+        </property>
+        <property name="graduationYear" type="java.lang.Integer">
+            <column name="GraduationYear" />
+        </property>
+        <property name="seniority" type="java.lang.Integer">
+            <column name="Seniority" />
+        </property>
+        <property name="department" type="string">
+            <column name="Department" length="50" />
+        </property>
+        <property name="job" type="string">
+            <column name="Job" length="50" />
+        </property>
+        <property name="isDelete" type="java.lang.Boolean">
+            <column name="IsDelete"></column>
+        </property>
+       <!--  <set name="expenses" table="expense" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" length="10" not-null="true" />
+            </key>
+            <one-to-many class="com.kaipan.mems.domain.Expense" />
+        </set> -->
+    </class>
+</hibernate-mapping>

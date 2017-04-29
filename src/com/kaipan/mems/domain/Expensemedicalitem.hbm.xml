@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.kaipan.mems.domain.Expensemedicalitem" table="expensemedicalitem" catalog="mems">
+        <composite-id name="id" class="com.kaipan.mems.domain.ExpensemedicalitemId">
+            <key-property name="expenseNum" type="string">
+                <column name="ExpenseNum" length="20" />
+            </key-property>
+            <key-property name="medicalNum" type="string">
+                <column name="MedicalNum" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="expense" class="com.kaipan.mems.domain.Expense" update="false" insert="false" fetch="select">
+            <column name="ExpenseNum" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="medicalitem" class="com.kaipan.mems.domain.Medicalitem" update="false" insert="false" fetch="select">
+            <column name="MedicalNum" length="20" not-null="true" />
+        </many-to-one>
+        <property name="mediaclName" type="string">
+            <column name="MediaclName" length="50" />
+        </property>
+        <property name="medicalUnitPrice" type="java.lang.Float">
+            <column name="MedicalUnitPrice" precision="12" scale="0" />
+        </property>
+        <property name="medicalQuantity" type="java.lang.Integer">
+            <column name="MedicalQuantity" />
+        </property>
+        <property name="isDelete" type="java.lang.Boolean">
+            <column name="IsDelete"></column>
+        </property>
+    </class>
+</hibernate-mapping>

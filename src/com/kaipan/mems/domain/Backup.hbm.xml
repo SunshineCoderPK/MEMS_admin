@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.kaipan.mems.domain.Backup" table="backup" catalog="mems">
+        <id name="backupId" type="string">
+            <column name="BackupId" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="admininfo" class="com.kaipan.mems.domain.Admininfo" fetch="select">
+            <column name="BackuperId" length="10" />
+        </many-to-one>
+        <property name="backupContent" type="string">
+            <column name="BackupContent" length="50" />
+        </property>
+        <property name="backupExplain" type="string">
+            <column name="BackupExplain" length="65535" />
+        </property>
+        <property name="bcakupTime" type="timestamp">
+            <column name="BcakupTime" length="0" />
+        </property>
+         <property name="isDelete" type="java.lang.Boolean">
+            <column name="IsDelete"></column>
+        </property>
+    </class>
+</hibernate-mapping>

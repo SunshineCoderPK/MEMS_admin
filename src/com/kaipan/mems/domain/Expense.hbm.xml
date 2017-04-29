@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.kaipan.mems.domain.Expense" table="expense" catalog="mems">
+        <id name="expenseNum" type="string">
+            <column name="ExpenseNum" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="userinfo" class="com.kaipan.mems.domain.Userinfo" fetch="select">
+            <column name="UserId" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="hospital" class="com.kaipan.mems.domain.Hospital" fetch="select">
+            <column name="HospId" length="10" />
+        </many-to-one>
+        <many-to-one name="expensetype" class="com.kaipan.mems.domain.Expensetype" fetch="select">
+            <column name="ExpenseTyp" />
+        </many-to-one>
+        <many-to-one name="admininfo" class="com.kaipan.mems.domain.Admininfo" fetch="select">
+            <column name="AdminId" length="10" />
+        </many-to-one>
+        <property name="userName" type="string">
+            <column name="UserName" length="50" />
+        </property>
+        <property name="medicalTyp" type="string">
+            <column name="MedicalTyp" length="10" />
+        </property>
+        <property name="total" type="java.lang.Float">
+            <column name="Total" precision="12" scale="0" />
+        </property>
+        <property name="personsalPay" type="java.lang.Float">
+            <column name="PersonsalPay" precision="12" scale="0" />
+        </property>
+        <property name="expensePay" type="java.lang.Float">
+            <column name="ExpensePay" precision="12" scale="0" />
+        </property>
+        <property name="expenseTime" type="timestamp">
+            <column name="ExpenseTime" length="0" />
+        </property>
+        <property name="check" type="java.lang.Integer">
+            <column name="Check" />
+        </property>
+        <property name="invoice" type="string">
+            <column name="Invoice" length="50" />
+        </property>
+        <property name="isDelete" type="java.lang.Boolean">
+            <column name="IsDelete"></column>
+        </property>
+        <set name="expensemedicalitems" table="expensemedicalitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ExpenseNum" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.kaipan.mems.domain.Expensemedicalitem" />
+        </set>
+        <set name="expensemedicines" table="expensemedicine" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ExpenseNum" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.kaipan.mems.domain.Expensemedicine" />
+        </set>
+         
+    </class>
+</hibernate-mapping>

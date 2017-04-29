@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping default-lazy="false">
+ <class catalog="mems" name="com.kaipan.mems.domain.Hospital" table="hospital">
+  <id name="hospId" type="string">
+   <column length="10" name="HospId"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="hospName" type="string">
+   <column length="20" name="HospName" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="hospTyp" type="int">
+   <column name="HospTyp" not-null="true"/>
+  </property>
+  <property name="isDelete" type="java.lang.Boolean">
+            <column name="IsDelete"></column>
+  </property>
+  <!-- <set fetch="select" inverse="true" lazy="true" name="expenses"
+   sort="unsorted" table="expense">
+   <key>
+    <column length="10" name="HospId"/>
+   </key>
+   <one-to-many class="com.kaipan.mems.domain.Expense"/>
+  </set> -->
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.kaipan.mems.domain.Expensetype" table="expensetype" catalog="mems">
+        <id name="expenseTyp" type="int">
+            <column name="ExpenseTyp" />
+            <generator class="assigned" />
+        </id>
+        <property name="userRoleId" type="int">
+            <column name="UserRoleId" not-null="true" />
+        </property>
+        <property name="medicalTyp" type="string">
+            <column name="MedicalTyp" length="10" />
+        </property>
+        <property name="hosptyp" type="int">
+            <column name="Hosptyp" not-null="true" />
+        </property>
+        <property name="isRetire" type="java.lang.Boolean">
+            <column name="IsRetire" />
+        </property>
+        <property name="thresholdFee" type="java.lang.Float">
+            <column name="ThresholdFee" precision="12" scale="0" />
+        </property>
+        <property name="expenseProportion" type="java.lang.Float">
+            <column name="ExpenseProportion" precision="12" scale="0" />
+        </property>
+        <property name="isDelete" type="java.lang.Boolean">
+            <column name="IsDelete"></column>
+        </property>
+        <!-- <set name="expenses" table="expense" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ExpenseTyp" />
+            </key>
+            <one-to-many class="com.kaipan.mems.domain.Expense" />
+        </set> -->
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.kaipan.mems.domain.Medicalitem" table="medicalitem" catalog="mems">
+        <id name="medicalNum" type="string">
+            <column name="MedicalNum" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="medicalName" type="string">
+            <column name="MedicalName" length="50" not-null="true" />
+        </property>
+        <property name="expenseTyp" type="string">
+            <column name="ExpenseTyp" length="10" />
+        </property>
+        <property name="medicUnit" type="string">
+            <column name="MedicUnit" length="10" />
+        </property>
+        <property name="medicalPrice" type="java.lang.Float">
+            <column name="MedicalPrice" precision="12" scale="0" />
+        </property>
+        <property name="isExpense" type="boolean">
+            <column name="IsExpense" not-null="true" />
+        </property>
+        <property name="remark" type="string">
+            <column name="Remark" length="65535" />
+        </property>
+        <property name="isDelete" type="java.lang.Boolean">
+            <column name="IsDelete"></column>
+        </property>
+        <!-- <set name="expensemedicalitems" table="expensemedicalitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MedicalNum" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.kaipan.mems.domain.Expensemedicalitem" />
+        </set> -->
+    </class>
+</hibernate-mapping>
