@@ -26,8 +26,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public void editPassword(String password, String id) {
-		// TODO Auto-generated method stub
-
+		userInfoDao.executeUpdate("editPassword", password,id);
 	}
 
 }

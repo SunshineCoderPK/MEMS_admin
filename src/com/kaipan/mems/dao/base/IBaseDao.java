@@ -4,6 +4,10 @@ package com.kaipan.mems.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+
+import com.kaipan.mems.utils.PageBean;
+
 /**
  * 通用接口，增删改查
  * @author PanKai
@@ -17,6 +21,8 @@ public interface IBaseDao<T> {
 	public T findById(Serializable id);
 	public List<T> findAll();
 	
-//	public void executeUpdate(String queryName,Object ...objects);
+	public void executeUpdate(String queryName,Object ...objects);
+	public void pageQuery(PageBean pageBean);
+	public List<T> findByCriteria(DetachedCriteria detachedCriteria);
 
 }

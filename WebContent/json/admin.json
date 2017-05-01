@@ -1,5 +1,4 @@
 [
-		{ "id":"1001", "pId":"100", "name":"鐢ㄦ埛绠＄悊", "page":"page_admin_userindex.action"},
-		{ "id":"1002", "pId":"100", "name":"鍔熻兘鏉冮檺绠＄悊", "page":"page_admin_function.action"},
-		{ "id":"1003", "pId":"100", "name":"瑙掕壊绠＄悊", "page":"page_admin_role.action"}
+		{ "id":"1001", "pId":"100", "name":"个人信息", "page":"page_admin_userindex.action"},
+		{ "id":"1002", "pId":"100", "name":"信息修改", "page":"page_admin_function.action"}
 ]

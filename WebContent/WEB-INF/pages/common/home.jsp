@@ -23,12 +23,18 @@
 	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.portal.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.cookie.js"></script>
-<script type="text/javascript">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js">
 </script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/FormatDate.js">
+</script>
+
+
 </head>
 <body>
-	<div id="layout_portal_portal" style="position:relative;height:450px;">
-	  	<div class="easyui-panel"  collapsible="false" noheader="true" style=" padding:5px;  height:440px;"
+	<div id="layout_portal_portal" style="position:relative;height:450px">
+	  	<div class="easyui-panel"  collapsible="false" noheader="true" style=" padding:5px; height:440px;"
 	  	 data-options="href:'page_portal_gonggao.action',fit:true,border:false">
 	  	</div>
 	</div>

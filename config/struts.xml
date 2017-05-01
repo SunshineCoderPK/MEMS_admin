@@ -42,5 +42,8 @@
 		<action name="userAction_logout" class="userAction" method="logout">
 			<result name="login">/login.jsp</result>
 		</action>
+		<action name="annocementAction_*" class="annocementAction" method="{1}">
+			<result name="list">/WEB-INF/pages/portal/gonggao.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -29,6 +29,8 @@
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+<script src="${pageContext.request.contextPath }/js/outOfBounds.js"
+	type="text/javascript"></script>
 <script type="text/javascript">
 	// 初始化ztree菜单
 	$(function() {
@@ -42,24 +44,18 @@
 				onClick : onClick
 			}
 		};
-		
+		var zNodes1 = [
+            {id:'1',pId:'0',name:'个人信息',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
+            {id:'2',pId:'0',name:'信息修改',page:"${pageContext.request.contextPath}/userAction_changeinfo.action"},
+            ];
+
+
+		$.fn.zTree.init($("#treeMenu"), setting, zNodes1);
 		// 基本功能菜单加载
-		$.ajax({
-			url : '${pageContext.request.contextPath}/json/menu.json',
-			type : 'POST',
-			dataType : 'text',
-			success : function(data) {
-				var zNodes = eval("(" + data + ")");
-				$.fn.zTree.init($("#treeMenu"), setting, zNodes);
-			},
-			error : function(msg) {
-				alert('菜单加载异常!');
-			}
-		});
 		
 		// 系统管理菜单加载
 		$.ajax({
-			url : '${pageContext.request.contextPath}/json/admin.json',
+			url : '${pageContext.request.contextPath}/json/menu.json',
 			type : 'POST',
 			dataType : 'text',
 			success : function(data) {
@@ -86,9 +82,6 @@
 			$('#editPwdWindow').window('close');
 		});
 		
-		$("#btnEp").click(function(){
-			alert("修改密码");
-		});
 	});
 
 	function onClick(event, treeId, treeNode, clickFlag) {
@@ -189,10 +182,10 @@
 	<div data-options="region:'west',split:true,title:'菜单导航'"
 		style="width:200px">
 		<div class="easyui-accordion" fit="true" border="false">
-			<div title="基本功能" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
+			<div title="个人管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
 				<ul id="treeMenu" class="ztree"></ul>
 			</div>
-			<div title="系统管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">  
+			<div title="报销管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">  
 				<ul id="adminMenu" class="ztree"></ul>
 			</div>
 		</div>
@@ -234,11 +227,15 @@
                 <table cellpadding=3>
                     <tr>
                         <td>新密码：</td>
-                        <td><input id="txtNewPass" type="Password" class="txt01" /></td>
+                        <td><input id="txtNewPass" type="Password" class="txt01 easyui-validatebox"
+                        required="true" data-options="validType:'length[4,10]'"
+                         /></td>
                     </tr>
                     <tr>
                         <td>确认密码：</td>
-                        <td><input id="txtRePass" type="Password" class="txt01" /></td>
+                        <td><input id="txtRePass" type="Password" class="txt01 easyui-validatebox" 
+                        required="true" data-options="validType:'length[4,10]'"
+                        /></td>
                     </tr>
                 </table>
             </div>
@@ -248,5 +245,37 @@
             </div>
         </div>
     </div>
+ <script type="text/javascript">
+	  //为“确定”按钮绑定事件
+		$("#btnEp").click(function(){
+			//进行表单校验
+			var v = $("#editPasswordForm").form("validate");//对应表单中的所有输入框进行校验
+			if(v){//表单校验通过
+				//判断两次输入是否一致
+				var v1 = $("#txtNewPass").val();
+				var v2 = $("#txtRePass").val();
+				if(v1 == v2){
+					//输入一致，发送ajax请求，修改当前用户的密码
+					var url = "${pageContext.request.contextPath}/userAction_editPassword.action";
+					$.post(url,{"password":v1},function(data){
+						if(data == '1'){
+							//修改密码成功
+							$.messager.alert("提示信息","密码修改成功！","info");
+						}else{
+							//修改失败
+							$.messager.alert("提示信息","密码修改失败！","warning");
+						}
+						//关闭修改密码的窗口 
+						$("#editPwdWindow").window("close");
+					});
+				}else{
+					//输入不一致，提示用户输入不一致
+					$.messager.alert("提示信息","两次输入密码不一致！","warning");
+				}
+				$("#txtNewPass").val("");
+				$("#txtRePass").val("");
+			}
+		});
+    </script>
 </body>
 </html>

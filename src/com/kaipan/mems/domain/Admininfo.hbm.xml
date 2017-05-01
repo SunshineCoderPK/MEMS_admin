@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
-    <class name="com.kaipan.mems.domain.Admininfo" table="admininfo" catalog="mems">
+    <class name="com.kaipan.mems.domain.Admininfo" table="admininfo" catalog="mems" lazy="false">
         <id name="empId" type="string">
             <column name="EmpId" length="10" />
             <generator class="assigned" />
