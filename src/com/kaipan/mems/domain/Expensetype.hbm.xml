@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-4-27 21:51:34 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
-    <class name="com.kaipan.mems.domain.Expensetype" table="expensetype" catalog="mems">
+    <class name="com.kaipan.mems.domain.Expensetype" table="expensetype" catalog="mems" lazy="false">
         <id name="expenseTyp" type="int">
             <column name="ExpenseTyp" />
             <generator class="assigned" />
@@ -28,6 +28,9 @@
         </property>
         <property name="isDelete" type="java.lang.Boolean">
             <column name="IsDelete"></column>
+        </property>
+         <property name="healthCard" type="java.lang.Boolean">
+            <column name="HealthCard"></column>
         </property>
         <!-- <set name="expenses" table="expense" inverse="true" lazy="true" fetch="select">
             <key>

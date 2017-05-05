@@ -11,6 +11,7 @@ import net.sf.json.JsonConfig;
 
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -63,6 +64,14 @@ public class AnnocementAction extends BaseAction<Announcement>{
 		String json = jsonObject.toString();
 		ServletActionContext.getResponse().setContentType("text/json;charset=UTF-8");
 		ServletActionContext.getResponse().getWriter().print(json);
+		return NONE;
+	}
+	
+	
+	public String findAnnouncementById() throws IOException{
+		Announcement announcement=annocementService.findAnnouncementById(model.getAnnId());
+		String[] excludes = new String[]{};
+		this.writeObject2Json(announcement,excludes);
 		return NONE;
 	}
 	

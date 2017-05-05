@@ -23,6 +23,7 @@ public class Userinfo implements java.io.Serializable {
 	private String department;
 	private String job;
 	private Boolean isDelete;
+	private String imgsrc;
 //	private Set expenses = new HashSet(0);
 
 	public Userinfo() {
@@ -38,7 +39,7 @@ public class Userinfo implements java.io.Serializable {
 
 	public Userinfo(String stuOrEmpId, String name, Boolean sex, Integer age, String password, String email,
 			String idcard, String phoneNo, int roleId, Integer graduationYear, Integer seniority, String department,
-			String job, Boolean isDelete) {
+			String job, Boolean isDelete, String imgsrc) {
 		this.stuOrEmpId = stuOrEmpId;
 		this.name = name;
 		this.sex = sex;
@@ -53,6 +54,7 @@ public class Userinfo implements java.io.Serializable {
 		this.department = department;
 		this.job = job;
 		this.isDelete=isDelete;
+		this.imgsrc=imgsrc;
 //		this.expenses = expenses;
 	}
 
@@ -167,7 +169,14 @@ public class Userinfo implements java.io.Serializable {
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
 	}
-
+    
+	public String getImgsrc() {
+		return imgsrc;
+	}
+	
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
+	}
 //	public Set getExpenses() {
 //		return this.expenses;
 //	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <div style="padding: 10px">
 	<table style="height: auto;" id="annocements">
 
@@ -31,14 +32,19 @@
 			    striped:true,
 			    idField : 'annId',
 			    onClickRow: function(index,row){
-				       alert(row);
-				       $("#announcement").window({
-				    	   width:600,    
-			    		    height:400,    
-			    		    modal:true ,});
-				      },
-		    
-			});
+				    var url='${pageContext.request.contextPath}/annocementAction_findAnnouncementById.action';
+				    $.post(url,{"annId":row.annId},function(data){
+				    	var index1 = layer.open({
+					    	  title:data.annTitle,
+				    		  type: 1,
+				    		  content: ""+data.annContent,
+				    		  area: ['320px', '195px'],
+				    		  maxmin: true
+				    		});
+				    		layer.full(index1);
+					    });	
+		       },
+		});
 		});
 	</script>
 </div>

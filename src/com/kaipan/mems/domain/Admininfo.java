@@ -28,6 +28,7 @@ public class Admininfo implements java.io.Serializable {
 	private String department;
 	private String job;
 	private Boolean isDelete;
+	private String imgsrc;
 
 
 	public Admininfo() {
@@ -42,7 +43,7 @@ public class Admininfo implements java.io.Serializable {
 	}
 
 	public Admininfo(String empId, String name, Boolean sex, Integer age, String password, String email, String idcard,
-			String phoneNo, int roleId, String remark, String department, String job,Boolean isDelete) {
+			String phoneNo, int roleId, String remark, String department, String job,Boolean isDelete, String imgsrc) {
 		this.empId = empId;
 		this.name = name;
 		this.sex = sex;
@@ -56,6 +57,7 @@ public class Admininfo implements java.io.Serializable {
 		this.department = department;
 		this.job = job;
         this.isDelete=isDelete;
+        this.imgsrc=imgsrc;
 	}
 
 	public String getEmpId() {
@@ -160,6 +162,14 @@ public class Admininfo implements java.io.Serializable {
 	
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
+	}
+	
+	public String getImgsrc() {
+		return imgsrc;
+	}
+	
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
 	}
 
 

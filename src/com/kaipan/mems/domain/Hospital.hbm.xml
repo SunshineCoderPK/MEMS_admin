@@ -17,6 +17,9 @@
   <property name="isDelete" type="java.lang.Boolean">
             <column name="IsDelete"></column>
   </property>
+	<property name="imgsrc" type="string">
+		<column name="imgsrc" length="255" />
+	</property>  
   <!-- <set fetch="select" inverse="true" lazy="true" name="expenses"
    sort="unsorted" table="expense">
    <key>

@@ -17,6 +17,7 @@ public class Medicalitem implements java.io.Serializable {
 	private boolean isExpense;
 	private String remark;
 	private Boolean isDelete;
+	private String imgsrc;
 //	private Set expensemedicalitems = new HashSet(0);
 
 	public Medicalitem() {
@@ -29,7 +30,7 @@ public class Medicalitem implements java.io.Serializable {
 	}
 
 	public Medicalitem(String medicalNum, String medicalName, String expenseTyp, String medicUnit, Float medicalPrice,
-			boolean isExpense, String remark, Boolean isDelete) {
+			boolean isExpense, String remark, Boolean isDelete, String imgsrc) {
 		this.medicalNum = medicalNum;
 		this.medicalName = medicalName;
 		this.expenseTyp = expenseTyp;
@@ -38,6 +39,7 @@ public class Medicalitem implements java.io.Serializable {
 		this.isExpense = isExpense;
 		this.remark = remark;
 		this.isDelete=isDelete;
+		this.imgsrc=imgsrc;
 //		this.expensemedicalitems = expensemedicalitems;
 	}
 
@@ -103,6 +105,14 @@ public class Medicalitem implements java.io.Serializable {
 	
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
+	}
+	
+	public String getImgsrc() {
+		return imgsrc;
+	}
+	
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
 	}
 
 //	public Set getExpensemedicalitems() {

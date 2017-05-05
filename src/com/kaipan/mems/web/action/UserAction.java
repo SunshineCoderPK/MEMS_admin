@@ -23,6 +23,8 @@ public class UserAction extends BaseAction<Userinfo> {
 	
 	private String checkcode;
 	
+	private String oldPwd;
+	
 	public void setCheckcode(String checkcode) {
 		this.checkcode = checkcode;
 	}
@@ -35,6 +37,9 @@ public class UserAction extends BaseAction<Userinfo> {
 			
 			if(userinfo != null){
 				//登录成功,将User放入session域，跳转到系统首页
+				if(userinfo.getImgsrc()==null){
+					userinfo.setImgsrc("${pageContext.request.contextPath}/images/photo.jpg");
+				}
 				ServletActionContext.getRequest().getSession().setAttribute("loginUser", userinfo);
 				return "home";
 			}else{
@@ -76,7 +81,12 @@ public class UserAction extends BaseAction<Userinfo> {
 		Userinfo user = (Userinfo) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 		String password = model.getPassword();//新密码
 		password = MD5Utils.md5(password);
+		oldPwd=MD5Utils.md5(model.getName());
 		String flag = "1";
+		if(!user.getPassword().equals(oldPwd)){
+			flag = "0";
+			return NONE;
+		}
 		try{
 			userService.editPassword(password,user.getStuOrEmpId());
 		}catch (Exception e) {
@@ -85,6 +95,40 @@ public class UserAction extends BaseAction<Userinfo> {
 		}
 		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
 		ServletActionContext.getResponse().getWriter().print(flag);
+		return NONE;
+	}
+	
+	public String userinfo(){
+		return "success";
+	}
+	
+	public String changeinfo() throws IOException{
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+		if((model.getAge()==null)&&(model.getGraduationYear()==null)&&model.getEmail().equals("")&&model.getPhoneNo().equals(""))
+		{
+			ServletActionContext.getResponse().getWriter().print("failed");
+		}
+		else{
+			Userinfo user = (Userinfo) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+			if(model.getAge()!=null){
+				user.setAge(model.getAge());
+			}
+			if(model.getGraduationYear()!=null){
+				user.setGraduationYear(model.getGraduationYear());
+			}
+			if(!model.getEmail().equals("")){
+				user.setEmail(model.getEmail());
+			}
+			if(!model.getPhoneNo().equals("")){
+				user.setPhoneNo(model.getPhoneNo());
+			}
+			try {
+				userService.update(user);
+			} catch (Exception e) {
+				ServletActionContext.getResponse().getWriter().print("failed");
+			}
+			ServletActionContext.getResponse().getWriter().print("success");;
+		}
 		return NONE;
 	}
 }

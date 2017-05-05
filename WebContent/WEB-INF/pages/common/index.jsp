@@ -23,14 +23,14 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/js/ztree/zTreeStyle.css"
 	type="text/css" />
-<script
-	src="${pageContext.request.contextPath }/js/ztree/jquery.ztree.all-3.5.js"
+<script src="${pageContext.request.contextPath }/js/ztree/jquery.ztree.all-3.5.js"
 	type="text/javascript"></script>
-<script
-	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
+<script src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
 <script src="${pageContext.request.contextPath }/js/outOfBounds.js"
 	type="text/javascript"></script>
+
+
 <script type="text/javascript">
 	// 初始化ztree菜单
 	$(function() {
@@ -46,27 +46,31 @@
 		};
 		var zNodes1 = [
             {id:'1',pId:'0',name:'个人信息',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
-            {id:'2',pId:'0',name:'信息修改',page:"${pageContext.request.contextPath}/userAction_changeinfo.action"},
+            {id:'2',pId:'0',name:'密码修改',page:"${pageContext.request.contextPath}/page_user_changepassword"},
             ];
 
 
+		var zNodes2 = [
+            {id:'11',pId:'0',name:'综合信息'},
+            {id:'111',pId:'11',name:'药品信息',page:"${pageContext.request.contextPath}/page_infos_medicineinfos.action"},
+            {id:'112',pId:'11',name:'医疗项信息',page:"${pageContext.request.contextPath}/page_infos_medicalitem.action"},
+            {id:'113',pId:'11',name:'报销类型信息',page:"${pageContext.request.contextPath}/page_infos_expenseinfos.action"},
+            {id:'113',pId:'11',name:'医院信息',page:"${pageContext.request.contextPath}/page_infos_hospitalinfos.action"},
+            {id:'12',pId:'0',name:'报销清单'},
+            {id:'121',pId:'12',name:'历史报销',page:"${pageContext.request.contextPath}/page_expenses_historyExpenseInfo.action"},
+            {id:'122',pId:'12',name:'待审核报销',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
+            {id:'123',pId:'12',name:'年度报销单',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
+            {id:'13',pId:'0',name:'自主报销'},
+            {id:'131',pId:'13',name:'提交报销',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
+            {id:'132',pId:'13',name:'删除报销',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
+            
+            ];
+
 		$.fn.zTree.init($("#treeMenu"), setting, zNodes1);
 		// 基本功能菜单加载
-		
+		$.fn.zTree.init($("#adminMenu"), setting, zNodes2);
 		// 系统管理菜单加载
-		$.ajax({
-			url : '${pageContext.request.contextPath}/json/menu.json',
-			type : 'POST',
-			dataType : 'text',
-			success : function(data) {
-				var zNodes = eval("(" + data + ")");
-				$.fn.zTree.init($("#adminMenu"), setting, zNodes);
-			},
-			error : function(msg) {
-				alert('菜单加载异常!');
-			}
-		});
-		
+
 		// 页面加载后 右下角 弹出窗口
 		/**************/
 		window.setTimeout(function(){
@@ -189,7 +193,9 @@
 				<ul id="adminMenu" class="ztree"></ul>
 			</div>
 		</div>
+		
 	</div>
+	
 	<div data-options="region:'center'">
 		<div id="tabs" fit="true" class="easyui-tabs" border="false">
 			<div title="消息中心" id="subWarp"

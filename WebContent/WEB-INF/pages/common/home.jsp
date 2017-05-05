@@ -17,6 +17,12 @@
 	href="${pageContext.request.contextPath }/js/easyui/ext/portal.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/css/default.css">	
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/js/layui/css/layui.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/js/layui/css/modules/layer/default/layer.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/userinfo.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript"
@@ -29,6 +35,14 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/FormatDate.js">
 </script>
+<script src="${pageContext.request.contextPath }/js/layui/layui.js"
+	type="text/javascript">
+</script>	
+<script src="${pageContext.request.contextPath }/js/layui/lay/modules/layer.js"
+	type="text/javascript">
+</script>	
+
+
 
 
 </head>
@@ -37,6 +51,7 @@
 	  	<div class="easyui-panel"  collapsible="false" noheader="true" style=" padding:5px; height:440px;"
 	  	 data-options="href:'page_portal_gonggao.action',fit:true,border:false">
 	  	</div>
+	  	
 	</div>
 </body>
 </html>

@@ -42,8 +42,26 @@
 		<action name="userAction_logout" class="userAction" method="logout">
 			<result name="login">/login.jsp</result>
 		</action>
+		<action name="userAction_userinfo" class="userAction" method="userinfo">
+			<result name="success">/WEB-INF/pages/user/userinfo.jsp</result>
+		</action>	
 		<action name="annocementAction_*" class="annocementAction" method="{1}">
 			<result name="list">/WEB-INF/pages/portal/gonggao.jsp</result>
+		</action>
+		<action name="uploadimageAction_uploadimg" class="com.kaipan.mems.web.action.UploadimageAction" method="uploadimg">
+        </action>
+        <action name="expenseTypeAction_expenseTypeinfo" class="expenseTypeAction" method="expenseTypeinfo">
+		</action>
+		<action name="medicalItemAction_medicaliteminfo" class="medicalItemAction" method="medicaliteminfo">
+		</action>
+		<action name="hospitalAction_hospitalinfo" class="hospitalAction" method="hospitalinfo">
+		</action>
+		<action name="medicineAction_medicineinfo" class="medicineAction" method="medicineinfo">
+		</action>
+		<action name="expenseAction_historyExpenseInfo" class="expenseAction" method="historyExpenseInfo">
+		</action>
+		<action name="expenseAction_hisExpenseDetail" class="expenseAction" method="hisExpenseDetail">
+		     <result name="detail">/WEB-INF/pages/expenses/expensedetail.jsp</result>
 		</action>
 	</package>
 </struts>

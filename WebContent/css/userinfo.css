@@ -1,0 +1,17 @@
+
+
+.cztable{padding:15px 0;}
+.cztable table{border-bottom:#cfe1f9 solid 4px;border-right:#cfe1f9 solid 1px;}
+.cztable tr{height:35px}
+.cztable td, .cztable th{border-top:#cfe1f9 solid 1px; border-left:#cfe1f9 solid 1px; padding:6px 5px; }
+.cztable th{background:#eef7fc url(${pageContext.request.contextPath}/images/bgtable.jpg) repeat-x; line-height:22px; color:#185697;}
+.cztable td a{color:#185697;}
+.cztable .xxleft{text-align:left;}
+.end{border-bottom:#cfe1f9 solid 1px;}
+.input2{background:url(../images/bginput.gif) repeat-x top; height:26px; overflow:hidden; border:1px #949494 solid; padding:0 10px; cursor:pointer; font-size:12px;}
+.input_2{border-top:1px #999 solid; border-left:1px #999 solid; background:#fff url(../images/bg_inputbg.jpg) repeat-x top; border-bottom:1px #ddd solid; border-right:1px #ddd solid; padding:2px;color:#333; line-height:18px; font-size:12px;}
+.buttonbar{margin-left:35%;width:40%;margin-top:20px;}
+.layui-input{width:300px;}
+.change_info_form{algin:center;margin-top:20px;}
+
+

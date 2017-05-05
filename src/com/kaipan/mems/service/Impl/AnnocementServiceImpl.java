@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kaipan.mems.utils.PageBean;
 import com.kaipan.mems.dao.IAnnocementDao;
+import com.kaipan.mems.domain.Announcement;
 import com.kaipan.mems.service.IAnnocementService;
 
 @Service
@@ -16,5 +17,10 @@ public class AnnocementServiceImpl implements IAnnocementService{
 	
 	public void pageQuery(PageBean pageBean) {
 		annocementDao.pageQuery(pageBean);
+	}
+	
+	@Override
+	public Announcement findAnnouncementById(String annId) {
+		return annocementDao.findById(annId);
 	}
 }

@@ -13,6 +13,7 @@ public class Hospital implements java.io.Serializable {
 	private String hospName;
 	private int hospTyp;
 	private Boolean isDelete;
+	private String imgsrc;
 //	private Set expenses = new HashSet(0);
 
 	public Hospital() {
@@ -24,11 +25,12 @@ public class Hospital implements java.io.Serializable {
 		this.hospTyp = hospTyp;
 	}	
 
-	public Hospital(String hospId, String hospName, int hospTyp, Boolean isDelete) {
+	public Hospital(String hospId, String hospName, int hospTyp, Boolean isDelete, String imgsrc) {
 		this.hospId = hospId;
 		this.hospName = hospName;
 		this.hospTyp = hospTyp;
 		this.isDelete=isDelete;
+		this.imgsrc=imgsrc;
 //		this.expenses = expenses;
 	}
 
@@ -62,6 +64,14 @@ public class Hospital implements java.io.Serializable {
 	
 	public void setIsDelete(Boolean isDelete) {
 		this.isDelete = isDelete;
+	}
+	
+	public String getImgsrc() {
+		return imgsrc;
+	}
+	
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
 	}
 
 //	public Set getExpenses() {

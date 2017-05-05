@@ -28,5 +28,10 @@ public class UserServiceImpl implements IUserService {
 	public void editPassword(String password, String id) {
 		userInfoDao.executeUpdate("editPassword", password,id);
 	}
+	
+	@Override
+	public void update(Userinfo user) {
+		userInfoDao.update(user);
+	}
 
 }

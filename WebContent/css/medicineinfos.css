@@ -1,0 +1,12 @@
+
+
+.mediframe{padding:15px 0;}
+.mediframe table{border-bottom:#cfe1f9 solid 4px;border-right:#cfe1f9 solid 1px;}
+.mediframe tr{height:35px}
+.mediframe td, .mediframe th{border:#cfe1f9 solid 1px;  padding:6px 5px; width:250px}
+.mediframe th{background:#eef7fc url(${pageContext.request.contextPath}/images/bgtable.jpg) repeat-x; line-height:22px; color:#185697;}
+.mediframe .xxleft{text-align:left;}
+.img1 {
+    display: inline-block;
+    border: none;
+}

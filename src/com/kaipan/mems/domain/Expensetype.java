@@ -17,6 +17,7 @@ public class Expensetype implements java.io.Serializable {
 	private Float thresholdFee;
 	private Float expenseProportion;
 	private Boolean isDelete;
+	private Boolean healthCard;
 
 
 	public Expensetype() {
@@ -29,7 +30,7 @@ public class Expensetype implements java.io.Serializable {
 	}
 
 	public Expensetype(int expenseTyp, int userRoleId, String medicalTyp, int hosptyp, Boolean isRetire,
-			Float thresholdFee, Float expenseProportion,Boolean isDelete) {
+			Float thresholdFee, Float expenseProportion,Boolean isDelete, Boolean healthCard) {
 		this.expenseTyp = expenseTyp;
 		this.userRoleId = userRoleId;
 		this.medicalTyp = medicalTyp;
@@ -38,6 +39,7 @@ public class Expensetype implements java.io.Serializable {
 		this.thresholdFee = thresholdFee;
 		this.expenseProportion = expenseProportion;
 		this.isDelete=isDelete;
+		this.healthCard=healthCard;
 //		this.expenses = expenses;
 	}
 
@@ -105,6 +107,13 @@ public class Expensetype implements java.io.Serializable {
 		this.isDelete = isDelete;
 	}
 
+	public Boolean getHealthCard() {
+		return healthCard;
+	}
+	
+	public void setHealthCard(Boolean healthCard) {
+		this.healthCard = healthCard;
+	}
 //	public Set getExpenses() {
 //		return this.expenses;
 //	}

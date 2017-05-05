@@ -12,6 +12,7 @@ public class Expensemedicine implements java.io.Serializable {
 	private String medicName;
 	private Float medicUnitPrice;
 	private Integer medicQuantity;
+	private Integer sourse;
 	private Boolean isDelete;
 
 	public Expensemedicine() {
@@ -24,14 +25,16 @@ public class Expensemedicine implements java.io.Serializable {
 	}
 
 	public Expensemedicine(ExpensemedicineId id, Expense expense, Medicine medicine, String medicName,
-			Float medicUnitPrice, Integer medicQuantity,Boolean isDelete) {
+			Float medicUnitPrice, Integer medicQuantity,Boolean isDelete, Integer sourse) {
 		this.id = id;
 		this.expense = expense;
 		this.medicine = medicine;
 		this.medicName = medicName;
 		this.medicUnitPrice = medicUnitPrice;
 		this.medicQuantity = medicQuantity;
+		this.sourse=sourse;
 		this.isDelete=isDelete;
+		
 	}
 
 	public ExpensemedicineId getId() {
@@ -80,6 +83,14 @@ public class Expensemedicine implements java.io.Serializable {
 
 	public void setMedicQuantity(Integer medicQuantity) {
 		this.medicQuantity = medicQuantity;
+	}
+	
+	public Integer getSourse() {
+		return sourse;
+	}
+	
+	public void setSourse(Integer sourse) {
+		this.sourse = sourse;
 	}
 	
 	public Boolean getIsDelete() {
