@@ -2,6 +2,7 @@ package com.kaipan.mems.web.action;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,7 @@ import com.kaipan.mems.utils.JsonDateValueProcessor;
 import com.kaipan.mems.utils.PageBean;
 import com.kaipan.mems.web.action.base.BaseAction;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
@@ -69,6 +71,14 @@ public class HospitalAction extends BaseAction<Hospital> {
 		String json = jsonObject.toString();
 		ServletActionContext.getResponse().setContentType("text/json;charset=UTF-8");
 		ServletActionContext.getResponse().getWriter().print(json);
+		return NONE;
+	}
+	
+	
+	public String allhospitalinfo() throws IOException{
+		List <Hospital> hospitals=hospitalService.findAll();
+		String[] excludes=new String[]{"hospTyp"};
+		this.writeList2Json(hospitals, excludes);
 		return NONE;
 	}
 }

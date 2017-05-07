@@ -196,6 +196,22 @@
 	   function doSearch(){
 			$('#searchWindow').window("open");
 		}
+
+	   $("#userType").combobox({
+		   panelHeight: 'auto',//自动高度适合
+		   });
+	   
+	   $("#medicalType").combobox({
+		   panelHeight: 'auto',//自动高度适合
+		   });
+	   
+	   $("#hospType").combobox({
+		   panelHeight: 'auto',//自动高度适合
+		   });
+	   
+	   $("#isretire").combobox({
+		   panelHeight: 'auto',//自动高度适合
+		   });
 	</script>
 </div>
 </body>

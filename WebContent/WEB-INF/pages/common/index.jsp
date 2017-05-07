@@ -58,11 +58,11 @@
             {id:'113',pId:'11',name:'医院信息',page:"${pageContext.request.contextPath}/page_infos_hospitalinfos.action"},
             {id:'12',pId:'0',name:'报销清单'},
             {id:'121',pId:'12',name:'历史报销',page:"${pageContext.request.contextPath}/page_expenses_historyExpenseInfo.action"},
-            {id:'122',pId:'12',name:'待审核报销',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
+            {id:'122',pId:'12',name:'待审核报销',page:"${pageContext.request.contextPath}/page_expenses_ischeckExpenseInfo.action"},
             {id:'123',pId:'12',name:'年度报销单',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
             {id:'13',pId:'0',name:'自主报销'},
-            {id:'131',pId:'13',name:'提交报销',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
-            {id:'132',pId:'13',name:'删除报销',page:"${pageContext.request.contextPath}/userAction_userinfo.action"},
+            {id:'131',pId:'13',name:'提交报销',page:"${pageContext.request.contextPath}/page_expenses_addExpense.action"},
+            {id:'132',pId:'13',name:'删除报销',page:"${pageContext.request.contextPath}/page_expenses_deleteExpenseInfo.action"},
             
             ];
 

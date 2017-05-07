@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 <!-- 导入jquery核心类库 -->
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
+	src="${pageContext.request.contextPath }/js/jquery-1.8.0.min.js"></script>
 <!-- 导入easyui类库 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
@@ -49,20 +49,24 @@
 	src="${pageContext.request.contextPath }/js/layui/lay/modules/layer.js"
 	type="text/javascript">
 </script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery.PrintArea.js">
+</script>
 </head>
 <body>
-	<div style="width: 650px;height: auto; border: black solid 1px ;" >
+	<div style="width: 650px;height: auto; border: black solid 1px ;" id="printContent" >
 	<p style="font-size:20px;text-align:center; width: 100%;word-spacing:5px;margin-bottom: 5px" >医疗费报销单</p>
-	<div class="line1">
+	<div class="line1" >
 	<span style="width: 50px;">姓名：</span><span style="width: 70px">${expense.userinfo.name} </span>
 	<span style="width: 50px">学工号：</span><span style="width: 90px">${expense.userinfo.stuOrEmpId}</span>
 	
-	<span style="width: 50px">身份：</span><span style="width: 90px">${(expense.userinfo.roleId eq 1)?"教职工":((expense.userinfo.roleId eq 2)?"学生":"退休教职工")}</span>
+	<span style="width: 50px">身份：</span><span style="width: 90px">${(expense.userinfo.roleId eq 1)?"教职工":"学生"}</span>
 	<span style="width: 70x">报销单编号：</span><span style="width: 90px">${expense.expenseNum}</span>
 	</div>
 	<div class="line1">
-	<span style="width: 80px;">医疗类型：</span><span style="width: 100px">${expense.medicalTyp}</span>
-	<span style="width: 80px">就诊医院：</span><span style="width: 150px">${expense.hospital.hospName}</span>
+	<span style="width: 70px">是否退休：</span><span style="width: 60px">${(empty expense.userinfo.seniority or expense.userinfo.seniority le 30)?"未退休":"退休" }</span>
+	<span style="width: 70px;">医疗类型：</span><span style="width: 80px">${expense.medicalTyp}</span>
+	<span style="width: 70px">就诊医院：</span><span style="width: 100px">${expense.hospital.hospName}</span>
 	<span style="width: 60px">报销比例：</span><span style="width: 90px">${expense.expensetype.expenseProportion}</span>
 	</div>
 	<center><hr class="hrline" align="center" /></center>
@@ -123,9 +127,16 @@
 	<span style="width: 100px;">审核意见：</span><span style="width: 100px">${(expense.check eq 1)?"待审核":((expense.check eq 2)?"审核通过":"不通过")}</span>
 	<span style="width: 80px">审核人：</span><span style="width: 80px">${expense.admininfo.name}</span>
 	<span style="width: 80px">审核时间：</span><span style="width: 140px">${expense.expenseTime}</span>
+	</div>    
 	</div>
-	
-	</div>
-
+    <div><center><input type="button" id="print" value="打印" style="width: 100px ;margin-top: 50px"/></center></div>
 </body>
+
+<script type="text/javascript">
+$(function(){
+        $("#print").click(function(){
+             $("#printContent").printArea(); 
+             });
+});
+</script>
 </html>

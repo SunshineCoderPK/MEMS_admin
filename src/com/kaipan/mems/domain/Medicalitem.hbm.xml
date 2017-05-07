@@ -27,7 +27,7 @@
             <column name="Remark" length="65535" />
         </property>
         <property name="isDelete" type="java.lang.Boolean">
-            <column name="IsDelete"></column>
+            <column name="isDelete"></column>
         </property>
          <property name="imgsrc" type="string">
             <column name="imgsrc" length="255" />

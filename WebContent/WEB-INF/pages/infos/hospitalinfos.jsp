@@ -73,6 +73,7 @@
 									<option value=1>校外一级医院</option>
 									<option value=2>校外二级医院</option>
 									<option value=3>校外三级医院</option>
+									<option value=4>异地医院</option>
 							</select></td>
 					</tr>
 					<tr>
@@ -104,9 +105,12 @@
 					          else if(row.hospTyp==2){
 						          return "校外二级医院";
 					          }
-					          else{
+					          else if(row.hospTyp==3){
 					        	  return "校外三级医院";
 					          }
+					          else{
+					        	  return "异地医院";
+						      }
 					      }},
 				          ]],
 			    url:'${pageContext.request.contextPath}/hospitalAction_hospitalinfo.action', //指定URL地址，控件自动发送ajax请求获取数据	
@@ -152,6 +156,10 @@
 	   function doSearch(){
 			$('#searchWindow').window("open");
 		}
+
+	   $("#hospTyp").combobox({
+		   panelHeight: 'auto',//自动高度适合
+		   });
 	</script>
 </div>
 </body>

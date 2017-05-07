@@ -50,7 +50,7 @@
 
 	</table>
 		<!-- 查询分区 -->
-	<div class="easyui-window" title="查询历史报销单" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+	<div class="easyui-window" title="查询待审核报销单" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="overflow:auto;padding:5px;" border="false">
 			<form id="his_expense">
 				<table class="table-edit" width="80%" align="center">
@@ -75,12 +75,7 @@
 						<td><input type="text" id="mintotal" style="width: 50px" class="easyui-validatebox" data-options="validType:'isfloat'"/>   --   
 						<input type="text" id="maxtotal" style="width: 50px" class="easyui-validatebox" data-options="validType:'isfloat'"/></td>
 					</tr>
-					<tr>
-						<td>报销时间区间</td>
-						<td><input  id="mindate"  type= "text" class= "easyui-datebox"  style="width: 85px"> </input> --
-						<input  id="maxdate"  type= "text" class= "easyui-datebox"  style="width: 85px"> </input>
-						</td>  
-					</tr>
+					
 					<tr>
 						<td colspan="2" align="center"><a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a> </td>
 					</tr>
@@ -112,14 +107,26 @@
 						      }
 					      }},
 				          {field:'check',title:'审核意见',width:150,align:'center',formatter:function(value,row,index){
-					          return "审核通过"
+					          return "待审核"
 					      }},
 				          {field:'admininfo',title:'审核人', width:100, align:'center',formatter: function(value,row,index){
-					          return row.admininfo.name;	
+				        	  if(row.admininfo==null){
+						          return "";
+						      }
+					          else {
+						          return row.admininfo.name;
+						      }	
 						  }},
-				          {field:'expenseTime',title:'审核时间',width:100, align:'center',},
+				          {field:'expenseTime',title:'审核时间',width:100, align:'center',formatter: function(value,row,index){
+				        	  if(row.expenseTime==null){
+						          return "";
+						      }
+					          else {
+						          return row.expenseTime;
+						      }	
+						  }},
 				          ]],
-			    url:'${pageContext.request.contextPath}/expenseAction_historyExpenseInfo.action', //指定URL地址，控件自动发送ajax请求获取数据	
+			    url:'${pageContext.request.contextPath}/expenseAction_ischeckExpenseInfo.action', //指定URL地址，控件自动发送ajax请求获取数据	
 				singleSelect:true,//是否可以单选
 				pagination:true,//分页条
 				pageList:[10,15,20],//分页条中的下拉框选项
@@ -163,7 +170,7 @@
 				if(v){
 				   var p ={expenseNum:$("#expenseNum").val(),medicalTyp:$("#medicalType").combobox('getValue'),
 						mintotal:$("#mintotal").val(),maxtotal:$("#maxtotal").val(),
-						mindate:$("#mindate").datebox('getValue'),maxdate:$("#maxdate").datebox('getValue'),}
+						}
 				   //重新发起ajax请求，提交参数
 				   $("#historyExpenses").datagrid("load",p);
 				   //关闭查询窗口
@@ -171,8 +178,6 @@
 				   $("#expenseNum").val("");
 				   $("#mintotal").val("");
 				   $("#maxtotal").val("");
-				   $("#mindate").datebox('setValue', '');
-				   $("#maxdate").datebox('setValue', '');
 				   
 				}
 			});
@@ -193,10 +198,6 @@
 			message : '请输入正数'
 		}
 	   });
-
-	   $("#medicalType").combobox({
-		   panelHeight: 'auto',//自动高度适合
-		   });
 </script>
 </div>
 </body>

@@ -27,7 +27,7 @@
             <column name="ExpenseProportion" precision="12" scale="0" />
         </property>
         <property name="isDelete" type="java.lang.Boolean">
-            <column name="IsDelete"></column>
+            <column name="isDelete"></column>
         </property>
          <property name="healthCard" type="java.lang.Boolean">
             <column name="HealthCard"></column>

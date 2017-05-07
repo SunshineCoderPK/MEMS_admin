@@ -46,7 +46,7 @@
 		<column name="Job" length="50" />
 	</property>
 	<property name="isDelete" type="java.lang.Boolean">
-		<column name="IsDelete"></column>
+		<column name="isDelete"></column>
 	</property>
 	<property name="imgsrc" type="string">
         <column name="imgsrc" length="255" />

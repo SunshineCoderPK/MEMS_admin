@@ -24,7 +24,7 @@
             <column name="PLetStatus" />
         </property>
         <property name="isDelete" type="java.lang.Boolean">
-            <column name="IsDelete"></column>
+            <column name="isDelete"></column>
         </property>
     </class>
 </hibernate-mapping>

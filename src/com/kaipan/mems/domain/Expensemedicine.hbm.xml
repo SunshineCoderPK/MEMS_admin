@@ -31,7 +31,8 @@
             <column name="Sourse" />
         </property>
         <property name="isDelete" type="java.lang.Boolean">
-            <column name="IsDelete"></column>
+            <column name="isDelete"></column>
         </property>
     </class>
+    <query name="delExpenseMedicine"> UPDATE Expensemedicine as T SET isDelete = ?  WHERE T.id.expenseNum = ? </query>
 </hibernate-mapping>

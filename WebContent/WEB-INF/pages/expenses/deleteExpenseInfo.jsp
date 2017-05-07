@@ -50,7 +50,7 @@
 
 	</table>
 		<!-- 查询分区 -->
-	<div class="easyui-window" title="查询历史报销单" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+	<div class="easyui-window" title="查询未通过报销单" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="overflow:auto;padding:5px;" border="false">
 			<form id="his_expense">
 				<table class="table-edit" width="80%" align="center">
@@ -81,6 +81,7 @@
 						<input  id="maxdate"  type= "text" class= "easyui-datebox"  style="width: 85px"> </input>
 						</td>  
 					</tr>
+					
 					<tr>
 						<td colspan="2" align="center"><a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a> </td>
 					</tr>
@@ -89,6 +90,7 @@
 		</div>
 	</div>
 <script type="text/javascript">
+       var ISOneRow = 1;
 	   $(function(){
 		   var toolbar = [ {
 				id : 'button-view',	
@@ -112,14 +114,19 @@
 						      }
 					      }},
 				          {field:'check',title:'审核意见',width:150,align:'center',formatter:function(value,row,index){
-					          return "审核通过"
+					          return "不通过"
 					      }},
 				          {field:'admininfo',title:'审核人', width:100, align:'center',formatter: function(value,row,index){
-					          return row.admininfo.name;	
+				        	 return row.admininfo.name;
 						  }},
-				          {field:'expenseTime',title:'审核时间',width:100, align:'center',},
+				          {field:'expenseTime',title:'审核时间',width:100, align:'center',formatter: function(value,row,index){
+				        	 return row.expenseTime;
+						  }},
+						  {field:'_operate',title:'操作',width:100, align:'center',formatter: function formatOper(val,row,index){  
+							    return '<a href="#" onclick="editUser('+index+')">删除</a>';  
+						  }},
 				          ]],
-			    url:'${pageContext.request.contextPath}/expenseAction_historyExpenseInfo.action', //指定URL地址，控件自动发送ajax请求获取数据	
+			    url:'${pageContext.request.contextPath}/expenseAction_deleteExpenseInfo.action', //指定URL地址，控件自动发送ajax请求获取数据	
 				singleSelect:true,//是否可以单选
 				pagination:true,//分页条
 				pageList:[10,15,20],//分页条中的下拉框选项
@@ -128,6 +135,10 @@
 			    toolbar : toolbar,
 			    fitColumns:true,
 			    onClickRow: function(index,row){
+			    	if(ISOneRow==0){
+						ISOneRow=1;
+						return false;
+					}
 			    	var index1=layer.open({
 						id:"his_expenseinfo",
 						type : 2,
@@ -159,11 +170,14 @@
 	        
 	        //绑定事件
 			$("#btn").click(function(){
+				
+				
 				var v = $("#his_expense").form("validate"); 
 				if(v){
 				   var p ={expenseNum:$("#expenseNum").val(),medicalTyp:$("#medicalType").combobox('getValue'),
 						mintotal:$("#mintotal").val(),maxtotal:$("#maxtotal").val(),
-						mindate:$("#mindate").datebox('getValue'),maxdate:$("#maxdate").datebox('getValue'),}
+						mindate:$("#mindate").datebox('getValue'),maxdate:$("#maxdate").datebox('getValue'),
+						}
 				   //重新发起ajax请求，提交参数
 				   $("#historyExpenses").datagrid("load",p);
 				   //关闭查询窗口
@@ -194,9 +208,23 @@
 		}
 	   });
 
-	   $("#medicalType").combobox({
-		   panelHeight: 'auto',//自动高度适合
-		   });
+	   function editUser(index){  
+		   ISOneRow=0;
+		   $('#historyExpenses').datagrid('selectRow',index);// 关键在这里  
+		    var row = $('#historyExpenses').datagrid('getSelected');
+		   var url="${pageContext.request.contextPath}/expenseAction_delExpense.action";   
+			$.post(url,{"expenseNum":row.expenseNum},function(data){
+				if(data == '1'){
+					//修改密码成功
+					 layer.msg("删除成功");
+				}else{
+					//修改失败
+					 layer.msg("删除失败");
+				}
+			});
+			window.location.href=window.location.href;
+			return false;
+	   }  
 </script>
 </div>
 </body>

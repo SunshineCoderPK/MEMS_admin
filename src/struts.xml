@@ -52,15 +52,15 @@
         </action>
         <action name="expenseTypeAction_expenseTypeinfo" class="expenseTypeAction" method="expenseTypeinfo">
 		</action>
-		<action name="medicalItemAction_medicaliteminfo" class="medicalItemAction" method="medicaliteminfo">
+		<action name="medicalItemAction_*" class="medicalItemAction" method="{1}">
 		</action>
-		<action name="hospitalAction_hospitalinfo" class="hospitalAction" method="hospitalinfo">
+		<action name="hospitalAction_*" class="hospitalAction" method="{1}">
 		</action>
-		<action name="medicineAction_medicineinfo" class="medicineAction" method="medicineinfo">
+		<action name="medicineAction_*" class="medicineAction" method="{1}">
 		</action>
 		<action name="expenseAction_historyExpenseInfo" class="expenseAction" method="historyExpenseInfo">
 		</action>
-		<action name="expenseAction_hisExpenseDetail" class="expenseAction" method="hisExpenseDetail">
+		<action name="expenseAction_*" class="expenseAction" method="{1}">
 		     <result name="detail">/WEB-INF/pages/expenses/expensedetail.jsp</result>
 		</action>
 	</package>

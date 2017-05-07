@@ -2,6 +2,7 @@ package com.kaipan.mems.web.action;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 
 import com.kaipan.mems.domain.Expensetype;
 import com.kaipan.mems.domain.Medicalitem;
+import com.kaipan.mems.domain.Medicine;
 import com.kaipan.mems.service.IMedicalItemService;
 import com.kaipan.mems.utils.JsonDateValueProcessor;
 import com.kaipan.mems.utils.PageBean;
@@ -70,6 +72,13 @@ public class MedicalItemAction extends BaseAction<Medicalitem>{
 		String json = jsonObject.toString();
 		ServletActionContext.getResponse().setContentType("text/json;charset=UTF-8");
 		ServletActionContext.getResponse().getWriter().print(json);
+		return NONE;
+	}
+	
+	public String allmedicalItem() throws IOException{
+		List <Medicalitem> medicalitems=medicalItemService.findAll();
+		String[] excludes=new String[]{"expenseTyp","medicUnit","medicalPrice","isExpense","remark"};
+		this.writeList2Json(medicalitems, excludes);
 		return NONE;
 	}
 

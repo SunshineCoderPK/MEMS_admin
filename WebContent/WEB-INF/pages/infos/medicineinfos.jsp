@@ -235,6 +235,10 @@
 	   function doSearch(){
 			$('#searchWindow').window("open");
 		}
+
+	   $("#expenseTyp").combobox({
+		   panelHeight: 'auto',//自动高度适合
+		   });
 	</script>
 </div>
 </body>
