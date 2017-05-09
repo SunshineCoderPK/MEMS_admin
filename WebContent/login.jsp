@@ -3,143 +3,75 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<title>高校医疗报销系统</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/style2.0.css">
-<style type="text/css">
-	ul li{font-size: 30px;color:#2ec0f6;}
-	.tyg-div{z-index:-1000;float:left;position:absolute;left:5%;top:20%;}
-	.tyg-p{
-		font-size: 14px;
-	    font-family: 'microsoft yahei';
-	    position: absolute;
-	    top: 135px;
-	    left: 60px;
-	}
-	.tyg-div-denglv{
-		z-index:1000;float:right;position:absolute;right:3%;top:10%;
-	}
-	.tyg-div-form{
-		background-color: #23305a;
-		width:300px;
-		height:auto;
-		margin:120px auto 0 auto;
-		color:#2ec0f6;
-	}
-	.tyg-div-form form {padding:10px;}
-	.tyg-div-form form input[type="text"]{
-		width: 270px;
-	    height: 30px;
-	    margin: 25px 10px 0px 0px;
-	}
-	.tyg-div-form form button {
-	    cursor: pointer;
-	    width: 270px;
-	    height: 44px;
-	    margin-top: 25px;
-	    padding: 0;
-	    background: #2ec0f6;
-	    -moz-border-radius: 6px;
-	    -webkit-border-radius: 6px;
-	    border-radius: 6px;
-	    border: 1px solid #2ec0f6;
-	    -moz-box-shadow:
-	        0 15px 30px 0 rgba(255,255,255,.25) inset,
-	        0 2px 7px 0 rgba(0,0,0,.2);
-	    -webkit-box-shadow:
-	        0 15px 30px 0 rgba(255,255,255,.25) inset,
-	        0 2px 7px 0 rgba(0,0,0,.2);
-	    box-shadow:
-	        0 15px 30px 0 rgba(255,255,255,.25) inset,
-	        0 2px 7px 0 rgba(0,0,0,.2);
-	    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-	    font-size: 14px;
-	    font-weight: 700;
-	    color: #fff;
-	    text-shadow: 0 1px 2px rgba(0,0,0,.1);
-	    -o-transition: all .2s;
-	    -moz-transition: all .2s;
-	    -webkit-transition: all .2s;
-	    -ms-transition: all .2s;
-}
-</style>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>高校医疗报销系统_后台</title>
+
+<link href="${pageContext.request.contextPath }/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath }/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
+</head>
+
 <body >
-<div  id="bg"  style="background-image:url('${pageContext.request.contextPath }/images/page1_3.jpg');
-    background-repeat:no-repeat;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='${pageContext.request.contextPath }/images/page1_3.jpg',sizingMethod='scale');
-    background-size:100% 100%;
-    position:absolute;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
-    z-index:-1;">    
- 
-<div class="tyg-div">
-	<ul>
-    	<li><div style="margin-left:20px;">医</div></li>
-    	<li><div style="margin-left:40px;">疗</div></li>
-    	<li><div style="margin-left:60px;">改</div></li>
-    	<li><div style="margin-left:80px;">变</div></li>
-    	<li><div style="margin-left:100px;">生</div></li>
-    	<li><div style="margin-left:120px;">活</div></li>
-    </ul>
-</div> 
-<div id="contPar" class="contPar">
-	<div id="page1"  style="z-index:1;">
-		<div class="title0">高校医疗报销平台</div>
-		<%-- <div class="imgGroug">
-			<ul>
-				<img alt="" class="img0 png" src="${pageContext.request.contextPath }/images/page1_0.png">
-				<img alt="" class="img1 png" src="${pageContext.request.contextPath }/images/page1_1.png">
-				<img alt="" class="img2 png" src="${pageContext.request.contextPath }/images/page1_2.png">
-			</ul>
-		</div>
-		<img alt="" class="img3 png" src="${pageContext.request.contextPath }/images/page1_4.jpg"> --%>
-	</div>
-</div>
-<div class="tyg-div-denglv">
-	<div class="tyg-div-form">
-			<form id="loginform" name="loginform" method="post"
-				action="${pageContext.request.contextPath }/userAction_login.action">
-				<h2>登录</h2>
-				<p class="tyg-p">欢迎访问 </p>
-				<div style="margin: 5px 0px;">
-					<input id="loginform:id" name="stuOrEmpId" type="text"
-						placeholder="请输入账号..." />
+<input type="hidden" id="TenantId" name="TenantId" value="" />
+<div class="header"></div>
+<div class="loginWraper">
+  <div class="loginBox">
+    <form class="form form-horizontal" action="${pageContext.request.contextPath }/adminAction_login.action" method="post" id="loginform" >
+      <div class="row cl">
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+        <div class="formControls col-xs-8">
+          <input id="loginform:id" name="empId" type="text" placeholder="账户" class="input-text size-L">
+        </div>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+        <div class="formControls col-xs-8">
+          <input id="loginform:password" name="password" type="password" placeholder="密码" class="input-text size-L">
+        </div>
+      </div>
+      <div class="row cl">
+					<div class="formControls col-xs-8 col-xs-offset-3">
+						<input class="input-text size-L" type="text" placeholder="验证码" name="checkcode" id="validate"
+							onblur="if(this.value==''){this.value='验证码:'}"
+							onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:"
+							style="width: 150px;"> 
+							<img id="loginform:vCode"
+							src="${pageContext.request.contextPath }/validatecode.jsp"
+							style="vertical-align: bottom;" alt="验证码"
+							onclick="javascript:document.getElementById('loginform:vCode').src='${pageContext.request.contextPath }/validatecode.jsp?'+Math.random();" />
+						<a id="kanbuq" href="javascript:;" onclick="javascript:document.getElementById('loginform:vCode').src='${pageContext.request.contextPath }/validatecode.jsp?'+Math.random();">看不清，换一张</a>
+					</div>
 				</div>
-				<div style="margin: 5px 0px;">
-					<input id="loginform:password" name="password" type="text"
-						placeholder="请输入密码..." />
-				</div>
-				<div style="margin: 5px 0px;">
-					<input id="loginform:validate" name="checkcode" type="text"
-						style="width: 150px;" placeholder="请输入验证码..." /> <img
-						id="loginform:vCode"
-						src="${pageContext.request.contextPath }/validatecode.jsp"
-						style="vertical-align: bottom;" alt="验证码"
-						onclick="javascript:document.getElementById('loginform:vCode').src='${pageContext.request.contextPath }/validatecode.jsp?'+Math.random();" />
-				</div>
-				<button type="submit">
-					登<span style="width: 20px;"></span>录
-				</button>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+          <label for="online">
+            <input type="checkbox" name="online" id="online" value="">
+            记住密码</label>
+        </div>
+      </div>
 				<div>
 					<font color="red"> <s:actionerror />
 					</font>
 				</div>
-			</form>
-		</div>
+		<div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+          <input  type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;" />
+          <input id="reset" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;"/>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+<div class="footer">Copyright 高校医疗报销系统 by sunshine</div>
+<script type="text/javascript" src="${pageContext.request.contextPath }/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/h-ui/js/H-ui.min.js"></script>
 
-
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/com.js"></script>
-<!--[if IE 6]>
-<script language="javascript" type="text/javascript" src="./script/ie6_png.js"></script>
-<script language="javascript" type="text/javascript">
-DD_belatedPNG.fix(".png");
-</script>
-<![endif]-->
-
-</div>
 </body>
 </html>

@@ -2,7 +2,7 @@ package com.kaipan.mems.web.interceptor;
 
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionProxy;
-import com.kaipan.mems.domain.Userinfo;
+import com.kaipan.mems.domain.Admininfo;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
@@ -15,8 +15,8 @@ import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 public class MemsLoginInterceptor extends MethodFilterInterceptor {
 	// À¹½Ø·½·¨
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
-		Userinfo user = (Userinfo) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
-		if(user == null){
+		Admininfo admin = (Admininfo) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+		if(admin == null){
 			//Î´µÇÂ¼£¬Ìø×ªµ½µÇÂ¼Ò³Ãæ
 			return "login";
 		}

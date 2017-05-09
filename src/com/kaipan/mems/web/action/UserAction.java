@@ -102,6 +102,12 @@ public class UserAction extends BaseAction<Userinfo> {
 		return "success";
 	}
 	
+	
+	/**
+	 * 修改用户信息
+	 * @return
+	 * @throws IOException
+	 */
 	public String changeinfo() throws IOException{
 		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
 		if((model.getAge()==null)&&(model.getGraduationYear()==null)&&model.getEmail().equals("")&&model.getPhoneNo().equals(""))

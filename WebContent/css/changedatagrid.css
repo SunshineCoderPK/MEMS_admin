@@ -1,0 +1,56 @@
+.datagrid-row:nth-child(odd){
+    background: #F0F0F0;
+}
+.datagrid-header td, .datagrid-body td, .datagrid-footer td{
+    border-style: solid;
+}
+.datagrid-row, .datagrid-header-row{
+    height : 40px;
+}
+.datagrid-header, .datagrid-td-rownumber{
+    background: #FFF;
+}
+.datagrid-row-over, .datagrid-header td.datagrid-header-over, .datagrid-row-over .rowbtn{
+    background: #3598DC !important;
+    color: #FFF;
+}
+.datagrid-view1 .datagrid-header-row td, .datagrid-view1 .datagrid-body{
+    border-left: 1px solid #CCC;
+}
+.datagrid-header, .datagrid-toolbar, .datagrid-pager, .datagrid-footer-inner{
+    border-color: #CCC;
+}
+.datagrid .datagrid-pager, .datagrid-header{
+    border: none;
+}
+.pagination-info {
+    margin: 0 10px 0 0;
+}
+.datagrid-header-row td{
+    border-top: 1px solid #CCC;
+}
+.datagrid-pager{
+    border: 1px solid #CCC !important;
+    margin: 0 18px 0 0 !important;
+}
+.datagrid-view2 .datagrid-body{
+    border-right: 1px solid #CCC;
+}
+.pagination{
+    border-radius: 0;
+}
+.datagrid-view2 .datagrid-header-row td{
+    cursor: pointer;
+}
+
+.panel-header, .panel-body {
+border-width: 0px;
+}
+.datagrid,.combo-p{
+border:solid 1px #D4D4D4;
+}
+.datagrid *{
+-webkit-box-sizing: content-box;
+-moz-box-sizing: content-box;
+box-sizing: content-box;
+}

@@ -293,10 +293,11 @@
 			$.post(url,obj,function(data){
 				if(data == '1'){
 					//修改密码成功
-					$.messager.alert("提示信息","密码修改成功！","info");
+					$.messager.alert("提示信息","提交成功！","info");
+					window.location.href=window.location.href;
 				}else{
 					//修改失败
-					$.messager.alert("提示信息","旧密码错误！","warning");
+					$.messager.alert("提示信息","提交失败","warning");
 				}
 			});
 	   }

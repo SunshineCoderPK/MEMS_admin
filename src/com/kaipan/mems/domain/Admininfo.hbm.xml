@@ -48,4 +48,6 @@
             <column name="imgsrc" length="255" />
         </property>
     </class>
+    <query name="editAdminPassword"> UPDATE Admininfo SET password = ? WHERE empId = ? </query>
+    <query name="delAdmin"> UPDATE Admininfo SET isDelete = ? WHERE empId = ? </query>
 </hibernate-mapping>

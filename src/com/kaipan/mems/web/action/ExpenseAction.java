@@ -481,19 +481,19 @@ public class ExpenseAction extends BaseAction<Expense>{
 		return NONE;
 	}
 	
-	
+	//查找所属报销类型
 	private Expensetype findExpensetype(int userRoleId, String medicalTyp, boolean isRetire, int hospTyp,
 			boolean healthCard) {
 		return expenseTypeService.findExpensetype(userRoleId,medicalTyp,isRetire,hospTyp,healthCard);
 	}
 
-	//查找所属报销类型
+	//查找所属报销类型，与上方法关键字不同
 	
 	private Expensetype findExpensetype(int userRoleId,String medicalTyp,boolean isRetire,int hospTyp)throws IOException{
 		return expenseTypeService.findExpensetype(userRoleId,medicalTyp,isRetire,hospTyp);
 	}
 	
-	// 查找所属报销类型
+	// 查找医院
 
 	private Hospital findHospital(String id) throws IOException{
 		return hospitalService.findHospital(id);		

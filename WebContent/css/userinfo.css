@@ -3,7 +3,7 @@
 .cztable{padding:15px 0;}
 .cztable table{border-bottom:#cfe1f9 solid 4px;border-right:#cfe1f9 solid 1px;}
 .cztable tr{height:35px}
-.cztable td, .cztable th{border-top:#cfe1f9 solid 1px; border-left:#cfe1f9 solid 1px; padding:6px 5px; }
+.cztable td, .cztable th{border-top:#cfe1f9 solid 1px; border-left:#cfe1f9 solid 1px; padding:6px 5px;border-right:#cfe1f9 solid 1px; }
 .cztable th{background:#eef7fc url(${pageContext.request.contextPath}/images/bgtable.jpg) repeat-x; line-height:22px; color:#185697;}
 .cztable td a{color:#185697;}
 .cztable .xxleft{text-align:left;}

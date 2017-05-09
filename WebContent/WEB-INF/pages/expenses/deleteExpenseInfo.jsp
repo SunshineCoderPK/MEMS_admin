@@ -222,7 +222,7 @@
 					 layer.msg("删除失败");
 				}
 			});
-			window.location.href=window.location.href;
+			window.opener.location.reload(); 
 			return false;
 	   }  
 </script>
