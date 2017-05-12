@@ -13,11 +13,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.kaipan.mems.domain.Admininfo;
+import com.kaipan.mems.domain.Userinfo;
 import com.kaipan.mems.service.IAdminInfoService;
 import com.kaipan.mems.utils.JsonDateValueProcessor;
 import com.kaipan.mems.utils.MD5Utils;
 import com.kaipan.mems.utils.PageBean;
 import com.kaipan.mems.web.action.base.BaseAction;
+import com.sun.xml.internal.bind.v2.runtime.MarshallerImpl;
 
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -90,7 +92,7 @@ public class AdminAction extends BaseAction<Admininfo>{
 				if(admininfo.getImgsrc()==null){
 					admininfo.setImgsrc("${pageContext.request.contextPath}/images/photo.jpg");
 				}
-				ServletActionContext.getRequest().getSession().setAttribute("loginUser", admininfo);
+				ServletActionContext.getRequest().getSession().setAttribute("loginAdmin", admininfo);
 				if(admininfo.getRoleId()==1){
 					return "super";
 				}
@@ -219,6 +221,115 @@ public class AdminAction extends BaseAction<Admininfo>{
 	public String changeAdmin() throws IOException{
 		this.empId=ServletActionContext.getRequest().getParameter("empId");
 		return "change";
+	}
+	
+	/**
+	 * 超级管理员跟据id修改管理员信息
+	 * @return
+	 * @throws IOException
+	 */
+	public String changeadmininfo() throws IOException{
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+		String empId1=ServletActionContext.getRequest().getParameter("empId");
+		if(empId1==null||empId1==""){
+			ServletActionContext.getResponse().getWriter().print("failed");
+			return NONE;
+		}
+		String sex=ServletActionContext.getRequest().getParameter("sex");
+		
+		Admininfo updateadmin = adminInfoService.findById(empId1);
+		String empIding=null;
+		if(sex!=null)
+		{
+			if(sex.equals("1")){
+				updateadmin.setSex(true);
+			}
+			else{
+				updateadmin.setSex(false);
+			}
+		}
+		else{
+			empIding=((Admininfo)ServletActionContext.getRequest().getSession().getAttribute("loginAdmin")).getEmpId();
+		}
+		if(model.getAge()!=null){
+			updateadmin.setAge(model.getAge());
+		}
+		if(model.getName()!=null&&!model.getName().isEmpty()){
+			updateadmin.setName(model.getName());
+		}
+		if(model.getDepartment()!=null&&!model.getDepartment().isEmpty()){
+			updateadmin.setDepartment(model.getDepartment());
+		}
+		if(model.getEmail()!=null&&!model.getEmail().isEmpty()){
+			updateadmin.setEmail(model.getEmail());
+		}
+		if(model.getIdcard()!=null&&!model.getIdcard().isEmpty()){
+			updateadmin.setIdcard(model.getIdcard());
+		}
+		if(model.getJob()!=null&&!model.getJob().isEmpty()){
+			updateadmin.setJob(model.getJob());
+		}
+		if(model.getPhoneNo()!=null&&!model.getPhoneNo().isEmpty()){
+			updateadmin.setPhoneNo(model.getPhoneNo());
+		}
+		if(model.getRemark()!=null&&!model.getRemark().isEmpty()){
+			updateadmin.setRemark(model.getRemark());
+		}
+		try {
+			adminInfoService.update(updateadmin);
+		} catch (Exception e) {
+			ServletActionContext.getResponse().getWriter().print("failed");
+		}
+		if(empIding!=null){
+			Admininfo admininfoing=adminInfoService.findById(empIding);
+			ServletActionContext.getRequest().getSession().setAttribute("loginAdmin", admininfoing);
+	    }
+		ServletActionContext.getResponse().getWriter().print("success");
+
+		return NONE;
+	}
+	
+	
+	/**
+	 * 根据id批量删除管理员
+	 * @throws IOException 
+	 */
+	public String deletebatch() throws IOException{
+		String ids=ServletActionContext.getRequest().getParameter("ids");
+		try{
+			adminInfoService.deletebatch(ids);
+		}catch (Exception e) {
+			//修改密码失败
+		}
+		return "list";
+	}
+	
+	/**
+	 * 注册管理员
+	 * @throws IOException 
+	 */
+	public String addadmin() throws IOException{
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+		String sex=ServletActionContext.getRequest().getParameter("sex");
+		if(sex.equals("1")){
+			model.setSex(true);
+		}
+		else{
+			model.setSex(false);
+		}
+		model.setRoleId(2);
+		model.setIsDelete(false);
+		model.setImgsrc("\\img\\user\\user_default.png");
+		model.setPassword(MD5Utils.md5(model.getPassword()));
+		try{
+			adminInfoService.addadmin(model);
+		}catch (Exception e) {
+			//注册失败
+			ServletActionContext.getResponse().getWriter().print("failed");
+			return NONE;
+		}
+		ServletActionContext.getResponse().getWriter().print("success");
+		return NONE;
 	}
 }
 

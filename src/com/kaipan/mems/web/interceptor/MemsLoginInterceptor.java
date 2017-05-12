@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 public class MemsLoginInterceptor extends MethodFilterInterceptor {
 	// À¹½Ø·½·¨
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
-		Admininfo admin = (Admininfo) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
+		Admininfo admin = (Admininfo) ServletActionContext.getRequest().getSession().getAttribute("loginAdmin");
 		if(admin == null){
 			//Î´µÇÂ¼£¬Ìø×ªµ½µÇÂ¼Ò³Ãæ
 			return "login";

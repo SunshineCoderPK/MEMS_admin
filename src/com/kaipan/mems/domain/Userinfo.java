@@ -185,4 +185,9 @@ public class Userinfo implements java.io.Serializable {
 //		this.expenses = expenses;
 //	}
 
+	public static Userinfo findById(String empId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@page import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,34 +49,40 @@
 <body>
 	
 	<div class="cztable">
-		<center>
-		<table width="96%" cellpadding="0" cellspacing="0">
+		<table width="100%" cellpadding="0" cellspacing="0">
         <tr>
             <td align="right" width="80">姓名：</td>
-            <td>${admininfo.name }&nbsp;</td>
+            <td>${userinfo.name }&nbsp;</td>
             <td align="right" width="90">身份证号码：</td>
-            <td>${admininfo.idcard }&nbsp;</td>
+            <td>${userinfo.idcard }&nbsp;</td>
             
-            <td rowspan="6"><div align="center"><img id="pic_face" class="img" height="160" width="120" src="${admininfo.imgsrc}" style="padding:2px 2px 5px; border:1px #ddd solid;"></div>&nbsp;</td>
+            <td rowspan="7"><div align="center"><img id="pic_face" class="img" height="160" width="120" src="${userinfo.imgsrc}" style="padding:2px 2px 5px; border:1px #ddd solid;"></div>&nbsp;</td>
         </tr>
         <tr>
-            <td align="right">性别：</td>     
-            <td>${admininfo.sex?"男":"女" }&nbsp;</td>
+            <td align="right">性别：</td>
+            <td>${userinfo.sex?"男":"女" }&nbsp;</td>
             <td align="right">年龄：</td>
-            <td>${(empty admininfo.age)?"":admininfo.age }&nbsp;</td>
+            <td>${(empty userinfo.age)?"":userinfo.age }&nbsp;</td>
         </tr>
         <tr>
             <td align="right">身份：</td>
-            <td>管理员&nbsp;</td>
-            <td align="right">工号：</td>
-            <td>${admininfo.empId }&nbsp;</td>
+            <td>${(userinfo.roleId==1)?"教职工":"学生" }&nbsp;</td>
+            <td align="right">学/工号：</td>
+            <td>${userinfo.stuOrEmpId }&nbsp;</td>
         </tr>
         
         <tr>
-            <td align="right">部门：</td>
-            <td>${(admininfo.department eq null)?"":admininfo.department }&nbsp;</td>
-            <td align="right">职位：</td>
-            <td>${(admininfo.job eq null)?"":admininfo.job }&nbsp;</td>
+            <td align="right">毕业年份：</td>
+            <td>${(empty userinfo.graduationYear)?"":userinfo.graduationYear }&nbsp;</td>
+            
+            <td align="right">工龄：</td>
+            <td>${(empty userinfo.seniority)?"":userinfo.seniority }&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right">学院/部门：</td>
+            <td>${(empty userinfo.department)?"":userinfo.department }&nbsp;</td>
+            <td align="right">专业/职位：</td>
+            <td>${(empty userinfo.job)?"":userinfo.job }&nbsp;</td>
         </tr>
         
         <tr>
@@ -89,28 +91,21 @@
         </tr>
         <tr class="end">
             <td align="right">邮箱：</td>
-            <td>${(admininfo.email eq null)?"":admininfo.email }&nbsp;</td>
+            <td>${(empty userinfo.email)?"":userinfo.email }&nbsp;</td>
             <td align="right">联系方式：</td>
-            <td>${(admininfo.phoneNo eq null)?"":admininfo.phoneNo }&nbsp;</td>
+            <td >${(empty userinfo.phoneNo)?"":userinfo.phoneNo }&nbsp;</td>
+			</tr> 
         <tr>
             <td align="right">联系地址：</td>
             <td colspan="4"></td>
         </tr> 
          <tr>
-            <td colspan="5"align="left">备注</td>
+            <td colspan="5" align="left" height="60px">备注</td>
             
-        </tr>
-        <tr align="center">
-            <td colspan="9" height="60">
-                ${(admininfo.remark eq null)?"":admininfo.remark }
-            </td>
-        </tr>           
+        </tr>         
     </table>
-  </center>
+  
 </div>
-<script type="text/javascript">
 
- 
-</script>
 </body>
 </html>

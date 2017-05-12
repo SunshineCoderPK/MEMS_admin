@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
+<%@page import="com.kaipan.mems.domain.Admininfo"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,6 +42,9 @@
 
 </head>
 <body>
+<%
+			Admininfo admininfo = (Admininfo) request.getSession().getAttribute("loginAdmin");
+		%>
  <input type="hidden" id="mId" value=${empId}>
 <!-- content start -->
   <div class="admin-content">
@@ -56,7 +61,7 @@
           <div class="am-panel-bd">
             <div class="am-g">
               <div class="am-u-md-4" style="width:100%">
-                <center><img id="adminimg" class="am-img-circle am-img-thumbnail" src="/img/user/user_default.png" alt="" style="width: 130px;height: 170px;"/></center>
+                <center><img id="adminimg" class="am-img-circle am-img-thumbnail" src="<%=admininfo.getImgsrc() %> " style="width: 130px;height: 170px;"/></center>
               </div>
               <div class="am-u-md-8" style="width:100%">
                 <center><form class="am-form">
@@ -79,9 +84,13 @@
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
         <form class="layui-form am-form am-form-horizontal" id="change_admin_info">
           <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="admin-name" name="name" placeholder="姓名 / Name">
+            <label for="user-name" class="am-u-sm-3 am-form-label"  >姓名 / Name</label>
+            <div class="am-u-sm-9" style="width: 100px;">
+               <label for="user-name" class="am-u-sm-3 am-form-label" style="width: 100px; text-align: center"><%=admininfo.getName()%></label>
+            </div>
+            <label for="user-name" class="am-u-sm-3 am-form-label" style="width: 150px;">工号 / EmpId</label>
+            <div class="am-u-sm-9" style="width: 100px; margin: 0;float: left;" >
+               <label for="user-name" id="empId" style="width: 100px; text-align: center;padding-top : 10px" class="am-u-sm-3 am-form-label"><%=admininfo.getEmpId()%></label>
             </div>
           </div>
        
@@ -89,46 +98,52 @@
           
           <div class="am-form-group">
             <label for="user-idcard" class="am-u-sm-3 am-form-label">身份证号 / IdCard</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="admin-IdCard" name="idcard" placeholder="身份证号 / IdCard">
+            <div class="am-u-sm-9" >
+              <label for="user-name" class="am-u-sm-3 am-form-label" style="padding-top: 10px"><%=admininfo.getIdcard()%></label>
             </div>
           </div>
           
            <div class="am-form-group">
             <label for="user-age" class="am-u-sm-3 am-form-label">年龄</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="admin-age" name="age" lay-verify="age" placeholder="输入你的年龄">
+            <div class="am-u-sm-9" style="width: 150px;height: 30px">
+              <input type="text" id="admin-age"  style="width: 100px; height: 30px" name="age" value="<%=(admininfo.getAge()==null)?"":admininfo.getAge() %>" lay-verify="age" >
             </div>
-          </div>
-          
-          <div class="am-form-group">
-            <label for="user-sex" class="am-u-sm-3 am-form-label">性别</label>
-            <div class="am-u-sm-9">
-              <select id="sex" name="sex">
-              <option value=1>男</option>
-              <option value=0>女</option>
-              </select>
+        
+            <label for="user-sex" class="am-u-sm-3 am-form-label" style="width: 150px;text-align: left;">性别</label>
+             <% String sex;
+            if(admininfo.getSex()==null){
+            	sex="";
+            }else if(admininfo.getSex()==false)
+            {
+            	sex="女";
+            }
+            else{
+            	sex="男";
+            }
+            %>
+            <div class="am-u-sm-9" style="width: 100px; margin: 0;float: left;padding-left: 0;">
+             <label for="user-name" id="empId" style="width: 100px; text-align: left;padding-left: 0;" class="am-u-sm-3 am-form-label"><%=sex %></label>
             </div>
           </div>
 
           <div class="am-form-group">
             <label for="user-email" class="am-u-sm-3 am-form-label">电子邮件 / Email</label>
             <div class="am-u-sm-9">
-              <input type="email" id="admin-email" name="email" lay-verify="email" placeholder="输入你的电子邮件 / Email">
+              <input type="email" id="admin-email" name="email"  value="<%=(admininfo.getEmail()==null)?"":admininfo.getEmail() %>" lay-verify="email" placeholder="输入你的电子邮件 / Email">
             </div>
           </div>
 
           <div class="am-form-group">
-            <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
+            <label for="admin-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
             <div class="am-u-sm-9">
-              <input type="text" id="admin-phone"name="phoneNo" lay-verify="phone" placeholder="输入你的电话号码 / Telephone">
+              <input type="text" id="admin-phone"name="phoneNo" lay-verify="phone" value="<%=(admininfo.getPhoneNo()==null)?"":admininfo.getPhoneNo() %>" placeholder="输入你的电话号码 / Telephone">
             </div>
           </div>
 
           <div class="am-form-group">
             <label for="user-QQ" class="am-u-sm-3 am-form-label">部门</label>
             <div class="am-u-sm-9">
-              <input type="text" name="department" id="admin-dep" >
+              <input type="text" name="department" id="admin-dep" value="<%=(admininfo.getDepartment()==null)?"":admininfo.getDepartment() %>" >
             </div>
           </div>
           
@@ -136,16 +151,16 @@
           
 
           <div class="am-form-group">
-            <label for="user-weibo" class="am-u-sm-3 am-form-label">职位</label>
+            <label for="admin-weibo" class="am-u-sm-3 am-form-label">职位</label>
             <div class="am-u-sm-9">
-              <input type="text" name="job" id="admin-job" >
+              <input type="text" name="job" id="admin-job" value="<%=(admininfo.getJob()==null)?"":admininfo.getJob() %>" >
             </div>
           </div>
 
           <div class="am-form-group">
             <label for="user-intro" class="am-u-sm-3 am-form-label">备注 / Intro</label>
             <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="admin-intro" name="remark" placeholder="备注信息"></textarea>
+              <textarea class="" rows="5" id="admin-intro" name="remark" placeholder="备注信息" value="<%=admininfo.getRemark()%>"></textarea>
               <small>250字以内写出备注信息...</small>
             </div>
           </div>
@@ -166,7 +181,7 @@ function upload_image(){
 	 $.ajaxFileUpload
      (
          {
-             url:'${pageContext.request.contextPath}/uploadimageAction_uploadimg.action?empId='+$("#mId").val(),//用于文件上传的服务器端请求地址
+             url:'${pageContext.request.contextPath}/uploadimageAction_uploadimg.action?empId='+$("#empId").text(),//用于文件上传的服务器端请求地址
              secureuri:false,//一般设置为false
              fileElementId:'adminpic',//文件上传空间的id属性  <input type="file" id="file" name="file" />
              dataType: 'json',//返回值类型 一般设置为json
@@ -224,14 +239,14 @@ $(function () {
 
         
      form.on('submit(formDemo)', function(data) {
-  	   $.post('${pageContext.request.contextPath}/adminAction_changeadmininfo.action?empId='+$("#mId").val(),data.field,function(res){
+  	   $.post('${pageContext.request.contextPath}/adminAction_changeadmininfo.action?empId='+$("#empId").text(),data.field,function(res){
   		     if(res=="failed"){
   		    	 layer.msg("修改失败");
-  		    	 clearall();
+  		    	 window.location.href=window.location.href;
 	    		 }
   		     else{
 	    		    layer.msg("修改成功");
-	    		    parent.location.reload();
+	    		    window.location.href=window.location.href;
   		     } 
   		  /*    parent.window.location.href="${pageContext.request.contextPath}/adminAction_changeAdmin.action?empId="+$("#mId").val();   */
             /*  var index = parent.layer.getFrameIndex(window.name); //获取窗口索引  

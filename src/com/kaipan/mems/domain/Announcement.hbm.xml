@@ -24,4 +24,5 @@
             <column name="isDelete"></column>
         </property>
     </class>
+     <query name="delAnn"> UPDATE Announcement SET isDelete = ? WHERE annId = ? </query>
 </hibernate-mapping>

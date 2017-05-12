@@ -32,6 +32,8 @@
 		</action>
 		<action name="adminAction_*" class="adminAction" method="{1}">
 		</action>
+		<action name="userAction_*" class="userAction" method="{1}">
+		</action>
 		<action name="adminAction_login" class="adminAction" method="login">
 			<result name="admin" type="redirect">adminAction_adminIndex</result>
 			<result name="super" type="redirect">adminAction_superIndex</result>
@@ -39,6 +41,9 @@
 		</action>
 		<action name="adminAction_adminIndex" class="adminAction" method="adminIndex">
 		    <result name="home">/WEB-INF/pages/common/adminIndex.jsp</result>
+		</action>
+		<action name="adminAction_deletebatch" class="adminAction" method="deletebatch">
+		    <result name="list">/WEB-INF/pages/super/adminlist.jsp</result>
 		</action>
 		<action name="adminAction_superIndex" class="adminAction" method="superIndex">
 		    <result name="home">/WEB-INF/pages/common/superIndex.jsp</result>
@@ -58,6 +63,12 @@
 		<action name="annocementAction_*" class="annocementAction" method="{1}">
 			<result name="list">/WEB-INF/pages/portal/gonggao.jsp</result>
 		</action>
+		<action name="annocementAction_changeAnninfo" class="annocementAction" method="changeAnninfo">
+		    <result name="change">/WEB-INF/pages/admin/changeann.jsp</result>
+		</action>
+		<action name="annocementAction_deletebatch" class="annocementAction" method="deletebatch">
+		    <result name="list">/WEB-INF/pages/admin/announcement.jsp</result>
+		</action>
 		<action name="uploadimageAction_uploadimg" class="com.kaipan.mems.web.action.UploadimageAction" method="uploadimg">
         </action>
         <action name="expenseTypeAction_expenseTypeinfo" class="expenseTypeAction" method="expenseTypeinfo">
@@ -72,6 +83,9 @@
 		</action>
 		<action name="expenseAction_*" class="expenseAction" method="{1}">
 		     <result name="detail">/WEB-INF/pages/expenses/expensedetail.jsp</result>
+		</action>
+		<action name="userAction_userinfoDetail" class="userAction" method="userinfoDetail">
+		    <result name="detail">/WEB-INF/pages/admin/userdetail.jsp</result>
 		</action>
 	</package>
 </struts>

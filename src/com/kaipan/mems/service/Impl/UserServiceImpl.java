@@ -8,6 +8,7 @@ import com.kaipan.mems.dao.IUserInfoDao;
 import com.kaipan.mems.domain.Userinfo;
 import com.kaipan.mems.service.IUserService;
 import com.kaipan.mems.utils.MD5Utils;
+import com.kaipan.mems.utils.PageBean;
 
 @Service
 @Transactional
@@ -32,6 +33,31 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void update(Userinfo user) {
 		userInfoDao.update(user);
+	}
+	
+	@Override
+	public void pageQuery(PageBean pageBean) {
+		userInfoDao.pageQuery(pageBean);
+	}
+	
+	@Override
+	public Userinfo findById(String stuOrEmpId) {
+		return userInfoDao.findById(stuOrEmpId);
+	}
+	
+	@Override
+	public void deleteuser(String stuOrEmpId) {
+		boolean isDelete=true;
+		userInfoDao.executeUpdate("delUser",isDelete, stuOrEmpId);
+	}
+	
+	@Override
+	public void deletebatch(String ids) {
+		boolean isDelete=true;
+		String[] staffIds = ids.split(",");
+		for (String id : staffIds) {
+			userInfoDao.executeUpdate("delUser",isDelete, id);
+		}
 	}
 
 }

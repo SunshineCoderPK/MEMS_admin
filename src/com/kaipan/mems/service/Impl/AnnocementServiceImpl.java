@@ -23,4 +23,29 @@ public class AnnocementServiceImpl implements IAnnocementService{
 	public Announcement findAnnouncementById(String annId) {
 		return annocementDao.findById(annId);
 	}
+	
+	@Override
+	public void deleteAnn(String annId) {
+		boolean isDelete=true;
+		annocementDao.executeUpdate("delAnn", isDelete,annId);
+	}
+	
+	@Override
+	public void update(Announcement updateannouncement) {
+		annocementDao.update(updateannouncement);
+	}
+	
+	@Override
+	public void deletebatch(String ids) {
+		boolean isDelete=true;
+		String[] staffIds = ids.split(",");
+		for (String id : staffIds) {
+			annocementDao.executeUpdate("delAnn",isDelete, id);
+		}
+	}
+	
+	@Override
+	public void save(Announcement updateannouncement) {
+		annocementDao.save(updateannouncement);
+	}
 }

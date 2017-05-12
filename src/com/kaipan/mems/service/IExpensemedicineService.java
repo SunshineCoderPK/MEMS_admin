@@ -6,4 +6,5 @@ public interface IExpensemedicineService {
 
 	public void add(Expensemedicine expensemedicine);
 
+
 }

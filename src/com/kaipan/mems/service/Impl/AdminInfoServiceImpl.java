@@ -25,6 +25,16 @@ public class AdminInfoServiceImpl implements IAdminInfoService {
 		return adminInfoDao.findByIdAndPwd(empId,pwd);
 	}
 	
+	
+	@Override
+	public void deletebatch(String ids) {
+		boolean isDelete=true;
+		String[] staffIds = ids.split(",");
+		for (String id : staffIds) {
+			adminInfoDao.executeUpdate("delAdmin",isDelete, id);
+		}
+	}
+	
 	@Override
 	public void pageQuery(PageBean pageBean) {
 		adminInfoDao.pageQuery(pageBean);
@@ -44,6 +54,16 @@ public class AdminInfoServiceImpl implements IAdminInfoService {
 	public void deleteAdmin(String empId) {
 		boolean isDelete=true;
 		adminInfoDao.executeUpdate("delAdmin",isDelete, empId);
+	}
+	
+	@Override
+	public void update(Admininfo admininfo) {
+		adminInfoDao.update(admininfo);
+	}
+	
+	@Override
+	public void addadmin(Admininfo model) {
+		adminInfoDao.save(model);
 	}
 
 }

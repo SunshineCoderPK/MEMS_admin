@@ -15,4 +15,10 @@ public interface IAdminInfoService {
 
 	public void deleteAdmin(String empId);
 
+	public void update(Admininfo admininfo);
+
+	public void deletebatch(String ids);
+
+	public void addadmin(Admininfo model);
+
 }

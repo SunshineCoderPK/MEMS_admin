@@ -28,7 +28,7 @@
 				<ul class="cl">
 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onclick="member_add('添加管理员','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+							<li><a href="javascript:;" onclick="member_add('添加管理员','${pageContext.request.contextPath }/page_super_add_admin','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -106,7 +106,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
 <script type="text/javascript">
 $(function(){
-	/*$("#min_title_list li").contextMenu('Huiadminmenu', {
+	/* $("#min_title_list li").contextMenu('Huiadminmenu', {
 		bindings: {
 			'closethis': function(t) {
 				console.log(t);
@@ -118,28 +118,11 @@ $(function(){
 				alert('Trigger was '+t.id+'\nAction was Email');
 			},
 		}
-	});*/
+	}); */
 });
 
 
-/*资讯-添加*/
-function article_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*图片-添加*/
-function picture_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
+
 
 /*用户-添加*/
 function member_add(title,url,w,h){

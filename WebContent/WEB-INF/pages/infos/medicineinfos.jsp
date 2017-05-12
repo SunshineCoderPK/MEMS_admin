@@ -148,7 +148,7 @@
 					    html+=row.imgsrc+'"';
 				    }
 				    else{
-					    html+='/img/default.jpg'+'"';
+					    html+='/img/user/default.jpg'+'"';
 				    }
 
 				    html+='></td><td> 编号：<label>'+row.medicNum;

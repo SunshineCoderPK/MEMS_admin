@@ -22,7 +22,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.annotations.JSON;
 import org.apache.commons.fileupload.FileItem;
 
+import com.kaipan.mems.domain.Admininfo;
 import com.kaipan.mems.domain.Userinfo;
+import com.kaipan.mems.service.IAdminInfoService;
 import com.kaipan.mems.service.IUserService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -36,6 +38,9 @@ public class UploadimageAction extends ActionSupport{
     
     @Resource
 	private IUserService userService;
+    
+    @Resource
+	private IAdminInfoService adminInfoService;
     
     
 	public String getFileFileName() {
@@ -78,7 +83,7 @@ public class UploadimageAction extends ActionSupport{
 			File folder=new File(filepathString);
 			//检测文件夹是否存在，如果不存在，则新建images目录
 			if(!folder.exists()){
-			    folder.mkdir();
+			    folder.mkdirs();
 			}
 			System.out.println("filepathstring = "+filepathString);
 			String name = fileFileName.substring(fileFileName.lastIndexOf(".")); // 得到后缀名
@@ -102,7 +107,9 @@ public class UploadimageAction extends ActionSupport{
 			int random = (int) (Math.random() * 10000); // 随机数
 			String fileName = System.currentTimeMillis() + random + fileFileName.substring(fileFileName.indexOf(".")); // 通过得到系统时间加随机数生成新文件名，避免重复
 			System.out.println(System.currentTimeMillis());
-			FileInputStream inputStream = new FileInputStream(this.getFile());
+		
+	        
+        	FileInputStream inputStream = new FileInputStream(this.getFile());
 	        FileOutputStream outputStream = new FileOutputStream(filepathString + "\\" + fileName);
 	        byte[] buf = new byte[1024];
 	        int length = 0;
@@ -111,11 +118,25 @@ public class UploadimageAction extends ActionSupport{
 	        }
 	        inputStream.close();
 	        outputStream.flush();
-	        String imgsrc="\\img"+"\\"+fileName;
+	        String imgsrc="\\img"+"\\"+foldername+"\\"+fileName;
             if(foldername.equals("user")){
             	Userinfo userinfo=(Userinfo)session.getAttribute("loginUser");
             	userinfo.setImgsrc(imgsrc);
             	userService.update(userinfo);
+            }
+            if(foldername.equals("admin")){
+            	if(ServletActionContext.getRequest().getParameter("empId")!=null&&ServletActionContext.getRequest().getParameter("empId")!=""){
+            		String empId=ServletActionContext.getRequest().getParameter("empId");
+            		Admininfo admininfo=adminInfoService.findById(empId);
+                	admininfo.setImgsrc(imgsrc);
+                	adminInfoService.update(admininfo);
+                	ServletActionContext.getRequest().getSession().setAttribute("loginAdmin", admininfo);
+            	}
+            	else{
+            		flag="fail3";
+    				map.put("data", flag);
+    				return NONE;
+            	}
             }
             flag=imgsrc;
 			map.put("data", flag);

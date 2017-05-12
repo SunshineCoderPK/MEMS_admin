@@ -216,7 +216,6 @@
 	}
 
 	function upload_image(){
-		alert("1");
 		 $.ajaxFileUpload
 	     (
 	         {

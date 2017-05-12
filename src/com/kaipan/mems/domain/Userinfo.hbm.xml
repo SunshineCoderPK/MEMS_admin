@@ -58,4 +58,5 @@
 </class>
     <!-- 命名查询语句 -->
 	<query name="editPassword"> UPDATE Userinfo SET password = ? WHERE stuOrEmpId = ? </query>
+	 <query name="delUser"> UPDATE Userinfo SET isDelete = ? WHERE stuOrEmpId = ? </query>
 </hibernate-mapping>
