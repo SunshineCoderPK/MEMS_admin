@@ -18,5 +18,10 @@ public class ExpensemdeicineServiceImpl implements IExpensemedicineService{
 	public void add(Expensemedicine expensemedicine) {
 		expensemedicineDao.save(expensemedicine);
 	}
+	
+	@Override
+	public void doDelete(String expenseNum) {
+		expensemedicineDao.executeUpdate("dodeletemedicine", expenseNum);
+	}
 
 }

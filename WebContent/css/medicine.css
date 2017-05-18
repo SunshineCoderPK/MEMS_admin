@@ -1,0 +1,42 @@
+.am-panel-bd {
+    width:300px;
+    border: 1px solid #ddd;
+    float:left;
+    height:300px;
+    display:inline-block ; 
+    margin-top: 50px;
+    padding:15px
+}
+
+.am-btn-primary {
+    color: #fff;
+    background-color: #0e90d2;
+    border-color: #0e90d2;
+}
+.am-btn {
+	width: 130px;
+	height:30px;
+    display: inline-block;
+    font-size: 1rem;
+    margin-bottom: 0;
+    line-height: 1.2;
+    text-align: center;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    outline: 0;
+    user-select: none;
+    transition: background-color 300ms ease-out,border-color 300ms ease-out;
+}
+
+.am-img-thumbnail {
+    display: inline-block;
+    padding: 2px;
+    line-height: 1.6;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}

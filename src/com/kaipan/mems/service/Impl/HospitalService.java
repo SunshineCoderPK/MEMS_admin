@@ -31,4 +31,41 @@ public class HospitalService  implements IHospitalService {
 	public Hospital findHospital(String id) {
 		return hospitalDao.findById(id);
 	}
+	
+	@Override
+	public void delhospital(String hospId) {
+		boolean isDelete=true;
+		hospitalDao.executeUpdate("delhospital", isDelete,hospId);
+	}
+	
+	@Override
+	public void deletebatch(String ids) {
+		boolean isDelete=true;
+		String[] staffIds = ids.split(",");
+		for(String id:staffIds){
+			hospitalDao.executeUpdate("delhospital", isDelete,id);
+		}
+	}
+	
+	@Override
+	public void saveBatch(List<Hospital> list) {
+		for(Hospital hospital:list){
+			hospitalDao.saveOrUpdate(hospital);
+		}
+	}
+	
+	@Override
+	public Hospital findById(String parameter) {
+        return hospitalDao.findById(parameter);
+	}
+	
+	@Override
+	public void update(Hospital hospital1) {
+		hospitalDao.update(hospital1);
+	}
+	
+	@Override
+	public void save(Hospital model) {
+		hospitalDao.save(model);
+	}
 }

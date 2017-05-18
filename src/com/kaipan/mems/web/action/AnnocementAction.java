@@ -166,6 +166,7 @@ public class AnnocementAction extends BaseAction<Announcement>{
 			annocementService.update(updateannouncement);
 		} catch (Exception e) {
 			ServletActionContext.getResponse().getWriter().print("failed");
+			return NONE;
 		}
 		ServletActionContext.getResponse().getWriter().print("success");
 		return NONE;
@@ -224,6 +225,7 @@ public class AnnocementAction extends BaseAction<Announcement>{
 			annocementService.save(updateannouncement);
 		} catch (Exception e) {
 			ServletActionContext.getResponse().getWriter().print("failed");
+			return NONE;
 		}
 		ServletActionContext.getResponse().getWriter().print("success");
 		return NONE;

@@ -51,6 +51,9 @@
 	<property name="imgsrc" type="string">
         <column name="imgsrc" length="255" />
     </property>
+    <property name="account" type="java.lang.Float">
+            <column name="Account" />
+    </property>
 	<!-- <set name="expenses" table="expense" inverse="true" lazy="true" fetch="select"> 
 		<key> <column name="UserId" length="10" not-null="true" /> </key> <one-to-many 
 		class="com.kaipan.mems.domain.Expense" /> </set> -->

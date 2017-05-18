@@ -32,6 +32,9 @@
          <property name="imgsrc" type="string">
             <column name="imgsrc" length="255" />
         </property>
+        <property name="rate" type="java.lang.Float">
+            <column name="Rate" precision="12" scale="0" />
+        </property>
         <!-- <set name="expensemedicalitems" table="expensemedicalitem" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="MedicalNum" length="20" not-null="true" />
@@ -39,4 +42,5 @@
             <one-to-many class="com.kaipan.mems.domain.Expensemedicalitem" />
         </set> -->
     </class>
+     <query name="delmedicalitem"> UPDATE Medicalitem SET isDelete = ? WHERE medicalNum = ? </query>
 </hibernate-mapping>

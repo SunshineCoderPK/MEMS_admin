@@ -1,6 +1,9 @@
 package com.kaipan.mems.service.Impl;
 
 
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,4 +56,36 @@ public class ExpenseServiceImpl implements IExpenseService {
 	public void update(Expense expense) {
 		expenseDao.update(expense);
 	}
+	
+	@Override
+	public void deletebatch(String ids) {
+		boolean isDelete=true;
+		String[] staffIds=ids.split(",");
+		for(String id:staffIds){
+			expenseDao.executeUpdate("delExpense",isDelete,id);
+			expensemedicalitemDao.executeUpdate("delExpenseMedicalitem",isDelete,id);
+			expensemedicineDao.executeUpdate("delExpenseMedicine",isDelete,id);	
+		}
+	}
+	
+	@Override
+	public void doDelete(String expenseNum) {
+		expenseDao.executeUpdate("dodeleteexpense", expenseNum);
+	}
+	
+	@Override
+	public List<Integer> findAllYear() {
+		return expenseDao.findAllYear();
+	}
+	
+	@Override
+	public List<Expense> findExpenses(DetachedCriteria detachedCriteria) {
+		return expenseDao.findByCriteria(detachedCriteria);
+	}
+	
+	@Override
+	public List accountByYear() {
+		return expenseDao.accByYear();
+	}
+	
 }

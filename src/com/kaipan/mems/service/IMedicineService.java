@@ -12,4 +12,16 @@ public interface IMedicineService {
 
 	public Medicine findbyId(String parameter);
 
+	public void deletemedicine(String medicNum);
+
+	public void deletebatch(String ids);
+
+	public void saveBatch(List<Medicine> list);
+
+	public Medicine findById(String parameter);
+
+	public void update(Medicine medicine);
+
+	public void save(Medicine model);
+
 }

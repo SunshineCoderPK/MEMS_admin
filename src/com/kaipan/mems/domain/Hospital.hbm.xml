@@ -28,4 +28,5 @@
    <one-to-many class="com.kaipan.mems.domain.Expense"/>
   </set> -->
  </class>
+ <query name="delhospital"> UPDATE Hospital SET isDelete = ? WHERE hospId = ? </query>
 </hibernate-mapping>

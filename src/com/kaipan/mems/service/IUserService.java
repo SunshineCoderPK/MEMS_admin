@@ -1,5 +1,7 @@
 package com.kaipan.mems.service;
 
+import java.util.List;
+
 import com.kaipan.mems.domain.Userinfo;
 import com.kaipan.mems.utils.PageBean;
 
@@ -18,4 +20,10 @@ public interface IUserService {
 	public void deleteuser(String stuOrEmpId);
 
 	public void deletebatch(String ids);
+
+	public void saveBatch(List<Userinfo> list);
+
+	public void adduser(Userinfo model);
+
+	public List<Userinfo> findAll();
 }

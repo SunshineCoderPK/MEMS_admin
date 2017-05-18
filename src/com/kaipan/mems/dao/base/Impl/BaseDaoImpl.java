@@ -60,11 +60,10 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements IBas
 		}
 
 		public List<T> findAll() {//FROM User
-			String hql = "FROM  " + entityClass.getSimpleName();
+			String hql = "FROM  " + entityClass.getSimpleName()+ " WHERE isDelete <> true";
 			return (List<T>)(this.getHibernateTemplate().find(hql));
 		}
 
-		
 		
 		/**
 		 * 通用更新方法
@@ -81,6 +80,20 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements IBas
 				query.setParameter(i++, arg);
 			}
 			query.executeUpdate();// 执行更新
+		}
+		
+		@Override
+		public List<T> execute(String queryName, Object... objects) {
+            Session session = this.getSession();// 从本地线程中获得session对象
+			
+			// 使用命名查询语句获得一个查询对象
+			Query query = session.getNamedQuery(queryName);
+			// 为HQL语句中的？赋值
+			int i = 0;
+			for (Object arg : objects) {
+				query.setParameter(i++, arg);
+			}
+			return (List<T>)query.list();// 执行更新
 		}
 		
 		/**

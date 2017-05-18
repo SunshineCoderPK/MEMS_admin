@@ -123,7 +123,7 @@
 				        	 return row.expenseTime;
 						  }},
 						  {field:'_operate',title:'操作',width:100, align:'center',formatter: function formatOper(val,row,index){  
-							    return '<a href="#" onclick="editUser('+index+')">删除</a>';  
+							    return '<a href="#" onclick="delExpense('+index+')">删除</a>';  
 						  }},
 				          ]],
 			    url:'${pageContext.request.contextPath}/expenseAction_deleteExpenseInfo.action', //指定URL地址，控件自动发送ajax请求获取数据	
@@ -208,7 +208,7 @@
 		}
 	   });
 
-	   function editUser(index){  
+	   function delExpense(index){  
 		   ISOneRow=0;
 		   $('#historyExpenses').datagrid('selectRow',index);// 关键在这里  
 		    var row = $('#historyExpenses').datagrid('getSelected');

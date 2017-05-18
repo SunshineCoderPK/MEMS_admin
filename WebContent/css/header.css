@@ -125,3 +125,9 @@ a:hover{color:#00a4ac;text-decoration:none;}
     border-radius: 3px;
      border:#cfe1f9 solid 1px;
 }
+
+.clearbtn{
+	background:url(../images/toolbg.gif) repeat-x; line-height:33px; height:33px; border:solid 0px #d3dbde; padding-right:10px; border-radius: 3px;  cursor:pointer;
+}
+
+

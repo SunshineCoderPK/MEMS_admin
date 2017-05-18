@@ -13,4 +13,16 @@ public interface IMedicalItemService {
 
 	public Medicalitem findbyId(String parameter);
 
+	public void deletemedicalitem(String medicalNum);
+
+	public void deletebatch(String ids);
+
+	public void saveBatch(List<Medicalitem> list);
+
+	public Medicalitem findById(String medicalNum);
+
+	public void update(Medicalitem medicalitem1);
+
+	public void save(Medicalitem model);
+
 }

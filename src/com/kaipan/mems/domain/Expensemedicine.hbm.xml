@@ -35,4 +35,5 @@
         </property>
     </class>
     <query name="delExpenseMedicine"> UPDATE Expensemedicine as T SET isDelete = ?  WHERE T.id.expenseNum = ? </query>
+    <query name="dodeletemedicine"> DELETE  FROM Expensemedicine  as T WHERE T.id.expenseNum = ? </query>
 </hibernate-mapping>

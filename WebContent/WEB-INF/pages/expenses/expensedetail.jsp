@@ -60,11 +60,11 @@
 	<span style="width: 50px;">姓名：</span><span style="width: 70px">${expense.userinfo.name} </span>
 	<span style="width: 50px">学工号：</span><span style="width: 90px">${expense.userinfo.stuOrEmpId}</span>
 	
-	<span style="width: 50px">身份：</span><span style="width: 90px">${(expense.userinfo.roleId eq 1)?"教职工":"学生"}</span>
+	<span style="width: 50px">身份：</span><span style="width: 90px">${(expense.userinfo.roleId eq 2)?"学生":"教职工"}</span>
 	<span style="width: 70x">报销单编号：</span><span style="width: 90px">${expense.expenseNum}</span>
 	</div>
 	<div class="line1">
-	<span style="width: 70px">是否退休：</span><span style="width: 60px">${(empty expense.userinfo.seniority or expense.userinfo.seniority le 30)?"未退休":"退休" }</span>
+	<span style="width: 70px">是否退休：</span><span style="width: 60px">${(empty expense.userinfo.seniority or expense.userinfo.seniority lt 30)?"未退休":"退休待遇" }</span>
 	<span style="width: 70px;">医疗类型：</span><span style="width: 80px">${expense.medicalTyp}</span>
 	<span style="width: 70px">就诊医院：</span><span style="width: 100px">${expense.hospital.hospName}</span>
 	<span style="width: 60px">报销比例：</span><span style="width: 90px">${expense.expensetype.expenseProportion}</span>
@@ -126,7 +126,7 @@
 	<div class="line1">
 	<span style="width: 100px;">审核意见：</span><span style="width: 100px">${(expense.check eq 1)?"待审核":((expense.check eq 2)?"审核通过":"不通过")}</span>
 	<span style="width: 80px">审核人：</span><span style="width: 80px">${expense.admininfo.name}</span>
-	<span style="width: 80px">审核时间：</span><span style="width: 140px">${expense.expenseTime}</span>
+	<span style="width: 80px">审核时间：</span><span style="width: 140px"><fmt:formatDate value="${expense.expenseTime}" type="both"/></span>
 	</div>    
 	</div>
     <div><center><input type="button" id="print" value="打印" style="width: 100px ;margin-top: 50px"/></center></div>

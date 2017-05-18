@@ -1,5 +1,7 @@
 package com.kaipan.mems.service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,6 +60,23 @@ public class UserServiceImpl implements IUserService {
 		for (String id : staffIds) {
 			userInfoDao.executeUpdate("delUser",isDelete, id);
 		}
+	}
+	
+	@Override
+	public void saveBatch(List<Userinfo> list) {
+		for (Userinfo signUser : list) {
+			userInfoDao.saveOrUpdate(signUser);
+		}
+	}
+	
+	@Override
+	public void adduser(Userinfo model) {
+		userInfoDao.save(model);
+	}
+	
+	@Override
+	public List<Userinfo> findAll() {
+		return userInfoDao.findAll();
 	}
 
 }

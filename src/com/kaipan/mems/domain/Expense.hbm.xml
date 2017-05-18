@@ -63,4 +63,5 @@
     </class>
     
     <query name="delExpense"> UPDATE Expense SET isDelete = ? WHERE expenseNum = ? </query>
+     <query name="dodeleteexpense"> DELETE  FROM Expense  WHERE expenseNum = ? </query>
 </hibernate-mapping>

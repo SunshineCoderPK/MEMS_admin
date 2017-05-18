@@ -66,7 +66,7 @@
         </tr>
         <tr>
             <td align="right">身份：</td>
-            <td>${(userinfo.roleId==1)?"教职工":"学生" }&nbsp;</td>
+            <td>${(userinfo.roleId==1)?"在职教职工":((userinfo.roleId==2)?"学生":"教职工(享退休待遇)") }&nbsp;</td>
             <td align="right">学/工号：</td>
             <td>${userinfo.stuOrEmpId }&nbsp;</td>
         </tr>

@@ -39,4 +39,5 @@
             <one-to-many class="com.kaipan.mems.domain.Expense" />
         </set> -->
     </class>
+     <query name="delexpensetype"> UPDATE Expensetype SET isDelete = ? WHERE expenseTyp = ? </query>
 </hibernate-mapping>

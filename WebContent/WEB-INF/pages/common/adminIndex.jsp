@@ -29,8 +29,11 @@
 				<ul class="cl">
 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onclick="article_add('添加公告','article-add.html')"><i class="Hui-iconfont">&#xe616;</i> 公告</a></li>
-							<li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+							<li><a href="javascript:;" onclick="member_add('添加医疗项','${pageContext.request.contextPath }/page_medicalitem_addmeditem.action','','510')"><i class="Hui-iconfont">&#xe616;</i> 医疗项</a></li>
+							<li><a href="javascript:;" onclick="member_add('添加药品','${pageContext.request.contextPath }/page_medicine_addmedicine.action','','510')"><i class="Hui-iconfont">&#xe616;</i> 药品</a></li>
+							<li><a href="javascript:;" onclick="member_add('添加报销类型','${pageContext.request.contextPath }/page_expenseType_addexpensetype.action','800','390')"><i class="Hui-iconfont">&#xe616;</i> 报销类型</a></li>
+							<li><a href="javascript:;" onclick="member_add('添加医院','${pageContext.request.contextPath }/page_hospital_addhospital.action','500','300')"><i class="Hui-iconfont">&#xe616;</i> 医院</a></li>
+							
 					</ul>
 				</li>
 			</ul>
@@ -39,12 +42,15 @@
 				<ul class="cl">
 					<li>超级管理员</li>
 					<li class="dropDown dropDown_hover">
-						<a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<%
+			         Admininfo  admininfo=(Admininfo)request.getSession().getAttribute("loginAdmin");
+			        %>
+						<a href="#" class="dropDown_A"><%=admininfo.getName() %> <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="#" onclick="logoutFun()">退出</a></li>
 					</ul>
 				</li>
-					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+					<!-- <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li> -->
 					<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
@@ -84,7 +90,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath }/page_admin_userlist.action" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
-					<li><a data-href="${pageContext.request.contextPath }/page_admin_userlist.action" data-title="批量注册" href="javascript:void(0)">批量注册</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_admin_signupuser.action" data-title="注册用户" href="javascript:void(0)">注册用户</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -92,10 +98,10 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 报销信息管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="product-brand.html" data-title="医疗项管理" href="javascript:void(0)">医疗项管理</a></li>
-					<li><a data-href="product-category.html" data-title="药品管理" href="javascript:void(0)">药品管理</a></li>
-					<li><a data-href="product-list.html" data-title="报销类型管理" href="javascript:void(0)">报销类型管理</a></li>
-					<li><a data-href="product-list.html" data-title="医院管理" href="javascript:void(0)">医院管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_medicalitem_medicalitemlist.action" data-title="医疗项管理" href="javascript:void(0)">医疗项管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_medicine_medicinelist.action" data-title="药品管理" href="javascript:void(0)">药品管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_expenseType_expensetypelist.action" data-title="报销类型管理" href="javascript:void(0)">报销类型管理</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_hospital_hospitallist.action" data-title="医院管理" href="javascript:void(0)">医院管理</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -103,8 +109,8 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 报销业务<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="http://h-ui.duoshuo.com/admin/" data-title="提交报销" href="javascript:;">提交报销</a></li>
-					<li><a data-href="feedback-list.html" data-title="报销审核" href="javascript:void(0)">报销审核</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_expenses_addExpense.action" data-title="提交报销" href="javascript:;">提交报销</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_expense_checkexpenselist.action" data-title="报销审核" href="javascript:void(0)">报销审核</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -112,9 +118,9 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 报销清单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="member-list.html" data-title="会员列表" href="javascript:;">待审核报销</a></li>
-					<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">历史报销</a></li>
-					<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">年度报销</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_expense_expenselist.action" data-title="历史报销" href="javascript:;">历史报销</a></li>
+					<li><a data-href="${pageContext.request.contextPath }/page_expense_delexpenselist.action" data-title="删除报销" href="javascript:;">删除报销</a></li>
+<!-- 					<li><a data-href="member-del.html" data-title="年度报销" href="javascript:;">年度报销</a></li> -->
 			</ul>
 		</dd>
 	</dl>
@@ -122,10 +128,14 @@
 			<dt><i class="Hui-iconfont">&#xe61a;</i> 报销统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
+				<li><a data-href="${pageContext.request.contextPath }/page_statistic_statistic1.action" data-title="历年报销数据" href="javascript:;">历年报销数据</a></li>
+				<li><a data-href="${pageContext.request.contextPath }/page_statistic_statistic4.action" data-title="按医疗类型统计" href="javascript:;">按医疗类型统计</a></li>
+				<li><a data-href="${pageContext.request.contextPath }/page_statistic_statistic2.action" data-title="按医院类型统计" href="javascript:;">按医院类型统计</a></li>
+				<li><a data-href="${pageContext.request.contextPath }/page_statistic_statistic3.action" data-title="按人员类型统计" href="javascript:;">按人员类型统计</a></li>
 			</ul>
 		</dd>
 	</dl>
-		<dl id="menu-system">
+<!-- 		<dl id="menu-system">
 			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
@@ -134,7 +144,7 @@
 					<li><a data-href="system-data.html" data-title="数据还原" href="javascript:void(0)">数据还原</a></li>
 			</ul>
 		</dd>
-	</dl>
+	</dl> -->
 </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
@@ -228,7 +238,7 @@ function product_add(title,url){
 	});
 	layer.full(index);
 }
-/*用户-添加*/
+/*-添加*/
 function member_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }

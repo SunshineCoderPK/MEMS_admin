@@ -13,4 +13,16 @@ public interface IHospitalService {
 
 	public Hospital findHospital(String id);
 
+	public void delhospital(String hospId);
+
+	public void deletebatch(String ids);
+
+	public void saveBatch(List<Hospital> list);
+
+	public Hospital findById(String parameter);
+
+	public void update(Hospital hospital1);
+
+	public void save(Hospital model);
+
 }

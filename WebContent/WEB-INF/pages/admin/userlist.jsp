@@ -41,13 +41,16 @@
 <script src="${pageContext.request.contextPath }/js/layui/lay/modules/layer.js"
 	type="text/javascript">
 </script>	
+<script src="${pageContext.request.contextPath }/js/jquery.ocupload-1.1.2.js"
+	type="text/javascript">
+</script>
 <body>
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
     <li><a href="#">首页</a></li>
-    <li><a href="#">管理员管理</a></li>
-    <li><a href="#">管理员列表</a></li>
+    <li><a href="#">用户管理</a></li>
+    <li><a href="#">用户列表</a></li>
     </ul>
     </div>
     
@@ -55,7 +58,7 @@
        <div style="margin-top: 20px;">
     <ul class="seachform url1">
     
-    <li style="margin-right: 30px;margin-left: 70px"><label>综合查询</label><input id="searchkey" name="" type="text" class="scinput" /></li>
+    <li style="margin-right: 30px;margin-left: 0px"><label>综合查询</label><input id="searchkey" name="" type="text" class="scinput" /></li>
     <li style="margin-right: 30px"><label>性别</label>  
     <div class="vocation">
     <select class="select3"  id="user_sex">
@@ -69,16 +72,27 @@
     <li style="margin-right: 30px"><label>身份</label>  
     <div class="vocation" >
     <select class="select3" id="user_roleId">
-    <option value=0>全部</option>
-    <option value=1>教职工</option>
+    <option value="">全部</option>
+    <option value=1>在职教职工</option>
     <option value=2>学生</option>
+    <option value=3>退休教职工</option>
+    </select>
+    </div>
+    </li>
+    
+     <li style="margin-right: 30px"><label>状态</label>  
+    <div class="vocation">
+    <select class="select3"  id="user_status">
+    <option value=0>正常</option>
+    <option value=1>已删除</option>
+    <option value="">全部</option>
     </select>
     </div>
     </li>
     
 
     
-    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
+    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询" onclick="searchbykey()"/></li>
     
     </ul>
     	 
@@ -90,6 +104,7 @@
     	<li style="width: 80px"  onclick="selectall()" href="#"><span><img src="images/t06.png"/></span>全选</li>
     	<li style="width: 110px"  onclick="clearselall()" href="#"><span><img src="images/t06.png"/></span>清空选择</li>
 		<li style="width: 110px"  onclick="doDelete()" href="#"><span><img src="images/t03.png"/></span>批量删除</li>
+	    <li style="padding-right: 0px;width: 110px"">  <span><img src="images/t01.png"/> </span><input  type="button" id="uploadusers" class="clearbtn" value="批量注册" style="height:100%;"/></li> 
 				
 		</ul>
 
@@ -200,6 +215,36 @@ $(function(){
 		     });
 		} 
 
+
+	$("#uploadusers").upload({
+         action: '${pageContext.request.contextPath}/userAction_signupuserbatch.action',  
+         name: 'myFile',
+         enctype: 'multipart/form-data',
+         onComplete: function(data) {
+            if(data == '1'){
+            	//上传成功
+            	  layer.alert('用户导入成功', {
+            		    skin: 'layui-layer-lan',
+            		    title:"提示信息",
+                		closeBtn: 0
+            		    ,anim: 4 //动画类型
+            		  },function(){
+                		  window.location.href='${pageContext.request.contextPath}/page_admin_userlist';
+                      });
+            }else{
+            		//失败
+            	layer.alert('用户导入失败,文件选择错误', {
+        		    skin: 'layui-layer-lan',
+        		    title:"提示信息",
+            		closeBtn: 0
+        		    ,anim: 4 //动画类型
+        		  },function(){
+            		  window.location.href='${pageContext.request.contextPath}/page_admin_userlist';
+                  });
+            }
+          }
+		});
+
 });
 
 
@@ -217,9 +262,10 @@ $(function(){
 	function searchbykey() {
 		var key = $('#searchkey').val();
 		var p = {
-			key : $("#searchkey").val(),
-			sex : $("#user_sex").val(),
-			roleId:$("#user_roleId").val()
+			key : $("#searchkey ").val(),
+			msex : $("#user_sex option:selected").val(),
+			mroleId:$("#user_roleId option:selected").val(),
+			status: $("#user_status option:selected").val(),
 		};
 		$("#users").datagrid("load", p);
 		$("#searchkey").val("");
@@ -272,13 +318,13 @@ $(function(){
 		click=1;
 		var rows = $('#users').datagrid('getRows');
 		var row = rows[index];
-		var empId = row.empId;
+	/* 	var empId = row.empId; */
 		var index1=layer.open({
 			id:"changeuser",
 			type :2,
-			title: ['管理员信息修改', 'font-size:18px;'], 
+			title: ['用户信息修改', 'font-size:18px;'], 
 			area : [ '780px', '390px' ],
-			content :"${pageContext.request.contextPath}/userAction_changeuser.action?stuOrEmpId="+row.stuOrEmpId,
+			content :"${pageContext.request.contextPath}/userAction_changeUser.action?stuOrEmpId="+row.stuOrEmpId,
 		});
 		layer.full(index1);
 	}
@@ -304,7 +350,7 @@ $(function(){
 						var id = rows[i].stuOrEmpId;
 						array.push(id);
 					}
-					var ids = array.join(",");
+			  		var ids = array.join(","); 
 					//发送请求，传递ids参数
 					window.location.href = '${pageContext.request.contextPath}/userAction_deletebatch.action?ids='+ids;
 					/* var url = "${pageContext.request.contextPath}/userAction_deleteuser.action";

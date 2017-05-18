@@ -279,7 +279,10 @@ public class AdminAction extends BaseAction<Admininfo>{
 			adminInfoService.update(updateadmin);
 		} catch (Exception e) {
 			ServletActionContext.getResponse().getWriter().print("failed");
+			return NONE;
 		}
+		
+		//更新修改后的信息到session中
 		if(empIding!=null){
 			Admininfo admininfoing=adminInfoService.findById(empIding);
 			ServletActionContext.getRequest().getSession().setAttribute("loginAdmin", admininfoing);

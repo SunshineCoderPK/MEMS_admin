@@ -18,6 +18,7 @@ public class Medicalitem implements java.io.Serializable {
 	private String remark;
 	private Boolean isDelete;
 	private String imgsrc;
+	private Float rate;
 //	private Set expensemedicalitems = new HashSet(0);
 
 	public Medicalitem() {
@@ -30,7 +31,7 @@ public class Medicalitem implements java.io.Serializable {
 	}
 
 	public Medicalitem(String medicalNum, String medicalName, String expenseTyp, String medicUnit, Float medicalPrice,
-			boolean isExpense, String remark, Boolean isDelete, String imgsrc) {
+			boolean isExpense, String remark, Boolean isDelete, String imgsrc,Float rate) {
 		this.medicalNum = medicalNum;
 		this.medicalName = medicalName;
 		this.expenseTyp = expenseTyp;
@@ -40,6 +41,7 @@ public class Medicalitem implements java.io.Serializable {
 		this.remark = remark;
 		this.isDelete=isDelete;
 		this.imgsrc=imgsrc;
+		this.rate=rate;
 //		this.expensemedicalitems = expensemedicalitems;
 	}
 
@@ -113,6 +115,14 @@ public class Medicalitem implements java.io.Serializable {
 	
 	public void setImgsrc(String imgsrc) {
 		this.imgsrc = imgsrc;
+	}
+	
+	public Float getRate() {
+		return rate;
+	}
+	
+	public void setRate(Float rate) {
+		this.rate = rate;
 	}
 
 //	public Set getExpensemedicalitems() {

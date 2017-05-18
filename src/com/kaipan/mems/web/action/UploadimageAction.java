@@ -23,8 +23,10 @@ import org.apache.struts2.json.annotations.JSON;
 import org.apache.commons.fileupload.FileItem;
 
 import com.kaipan.mems.domain.Admininfo;
+import com.kaipan.mems.domain.Medicine;
 import com.kaipan.mems.domain.Userinfo;
 import com.kaipan.mems.service.IAdminInfoService;
+import com.kaipan.mems.service.IMedicineService;
 import com.kaipan.mems.service.IUserService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -41,6 +43,9 @@ public class UploadimageAction extends ActionSupport{
     
     @Resource
 	private IAdminInfoService adminInfoService;
+    
+    @Resource
+  	private IMedicineService medicineService;
     
     
 	public String getFileFileName() {
@@ -120,7 +125,14 @@ public class UploadimageAction extends ActionSupport{
 	        outputStream.flush();
 	        String imgsrc="\\img"+"\\"+foldername+"\\"+fileName;
             if(foldername.equals("user")){
-            	Userinfo userinfo=(Userinfo)session.getAttribute("loginUser");
+            	Userinfo userinfo;
+            	if(ServletActionContext.getRequest().getParameter("stuOrEmpId")!=null&&ServletActionContext.getRequest().getParameter("stuOrEmpId")!=""){
+            		String stuOrEmpId=ServletActionContext.getRequest().getParameter("stuOrEmpId");
+            		userinfo=userService.findById(stuOrEmpId);
+            	}
+            	else{
+            		userinfo=(Userinfo)session.getAttribute("loginUser");
+            	}
             	userinfo.setImgsrc(imgsrc);
             	userService.update(userinfo);
             }
@@ -131,6 +143,19 @@ public class UploadimageAction extends ActionSupport{
                 	admininfo.setImgsrc(imgsrc);
                 	adminInfoService.update(admininfo);
                 	ServletActionContext.getRequest().getSession().setAttribute("loginAdmin", admininfo);
+            	}
+            	else{
+            		flag="fail3";
+    				map.put("data", flag);
+    				return NONE;
+            	}
+            }
+            if(foldername.equals("medicine")){
+            	if(ServletActionContext.getRequest().getParameter("medicNum")!=null&&ServletActionContext.getRequest().getParameter("medicNum")!=""){
+            		String medicNum=ServletActionContext.getRequest().getParameter("medicNum");
+            		Medicine medicine=medicineService.findById(medicNum);
+                	medicine.setImgsrc(imgsrc);
+                	medicineService.update(medicine);
             	}
             	else{
             		flag="fail3";

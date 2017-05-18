@@ -21,8 +21,8 @@
 	href="${pageContext.request.contextPath }/js/layui/css/layui.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/js/layui/css/modules/layer/default/layer.css">
-<%-- <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/css/userinfo.css"> --%>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/addexpense.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript"
@@ -45,11 +45,19 @@
 
 </head>
 <body>
+ <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">提交报销</strong> / <small>Submit reimbursement</small></div>
+    </div>
+
+    <hr/>
    <div>
    <form id="from1">
 		<table class="table-edit" width="80%" align="center"
 			style="margin-top: 50px;">
 			<tr>
+			    <td>报销人学/工号</td>
+				<td><input id="stuOrEmpId" class="easyui-combobox"
+					name="报销人" /></td>
 				<td>医疗类型</td>
 				<td><select id="medicalType" class="easyui-combobox"
 					name="医疗类型">
@@ -131,7 +139,7 @@
 			</tr>
 		</table>
 		</form>
-		<center><input type="button" class="layui-btn layui-btn-normal layui-btn-small " style="width: 100px;margin-top: 50px;" value="提交" onclick="add()"/></center>
+		<center><input type="button" class="layui-btn layui-btn-normal layui-btn-small " style="width: 100px;margin-top: 50px;margin-bottom: 50px;  background-color: #1E9FFF;" value="提交" onclick="add()"/></center>
 	</div>
 	
 </body>
@@ -143,6 +151,14 @@
 	   panelHeight: 'auto',//自动高度适合
 	   valueField:'hospId',   
 	   textField:'hospName',
+	   required: true,
+	   });
+
+   $("#stuOrEmpId").combobox({
+	   url:'${pageContext.request.contextPath}/userAction_alluserinfo.action', 
+	   panelHeight: 'auto',//自动高度适合
+	   valueField:'stuOrEmpId',   
+	   textField:'stuOrEmpId',
 	   required: true,
 	   });
 
@@ -257,7 +273,7 @@
    function add() {
 	   var v = $("#from1").form("validate"); 
 	   if(v){
-		   var data='{"medicalTyp":\"'+$("#medicalType").combobox("getValue")+
+		   var data='{"stuOrEmpId":\"'+$("#stuOrEmpId").combobox("getValue")+'\","medicalTyp":\"'+$("#medicalType").combobox("getValue")+
 		   '\","healthCard":\"'+$("#healthCard").combobox("getValue")+
 		   '\","hospId":\"'+$("#hospId").combobox("getValue")+'\","countmedicine":\"'+
 		   countmedicine+'\","countmedicalitem":\"'+countmedicalitem+'\","expensemedicines":[';
@@ -292,12 +308,23 @@
 		   var url = "${pageContext.request.contextPath}/expenseAction_addExpense.action";
 			$.post(url,obj,function(data){
 				if(data == '1'){
-					//修改密码成功
-					$.messager.alert("提示信息","提交成功！","info");
-					window.location.href=window.location.href;
+					  layer.alert('报销信息添加成功', {
+	            		    skin: 'layui-layer-lan',
+	            		    title:"提示信息",
+	                		closeBtn: 0
+	            		    ,anim: 4 //动画类型
+	            		  },function(){
+	                		  window.location.href=window.location.href;
+	                      });
 				}else{
-					//修改失败
-					$.messager.alert("提示信息","提交失败","warning");
+					 layer.alert('提交失败，同一报销项不能多次添加', {
+	            		    skin: 'layui-layer-lan',
+	            		    title:"提示信息",
+	                		closeBtn: 0
+	            		    ,anim: 4 //动画类型
+	            		  },function(){
+	                		  window.location.href=window.location.href;
+	                      });
 				}
 			});
 	   }

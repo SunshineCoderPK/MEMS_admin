@@ -1,0 +1,32 @@
+.am-padding {
+    padding:10px;
+}
+
+.am-cf:before, .am-cf:after {
+    content: " ";
+    display: table;
+}
+
+.am-text-lg {
+    font-size: 1.2rem;
+}
+
+.am-text-primary {
+    color: #0e90d2;
+}
+
+strong {
+    font-weight: 700;
+}
+
+small {
+    font-size: 80%;
+}
+
+hr {
+    height: 1px;
+    margin: 10px 0;
+    border: 0;
+    background-color: #e2e2e2;
+    clear: both;
+}
